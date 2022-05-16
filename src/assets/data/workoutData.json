@@ -1,0 +1,32 @@
+{
+	"data": [
+		{
+			"name": "Bench Press (Barbell)",
+			"category": "chest",
+			"amount": 0,
+			"image": "https://static.strengthlevel.com/images/illustrations/bench-press-1-1000x1000.jpg",
+			"example": true
+		},
+		{
+			"name": "Deadlift (Barbell)",
+			"category": "back",
+			"amount": 0,
+			"image": "https://static.strengthlevel.com/images/illustrations/deadlift-2-1000x1000.jpg",
+			"example": true
+		},
+		{
+			"name": "Overhead Press (Barbell)",
+			"category": "shoulder",
+			"amount": 0,
+			"image": "https://static.strengthlevel.com/images/illustrations/shoulder-press-1-1000x1000.jpg",
+			"example": true
+		},
+		{
+			"name": "Squat (Barbell)",
+			"category": "leg",
+			"amount": 0,
+			"image": "https://static.strengthlevel.com/images/illustrations/squat-2-1000x1000.jpg",
+			"example": true
+		}
+	]
+}
