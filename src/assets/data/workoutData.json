@@ -8,11 +8,46 @@
 			"example": true
 		},
 		{
+			"name": "Incline Bench Press (Barbell)",
+			"category": "chest",
+			"amount": 0,
+			"image": "https://static.strengthlevel.com/images/illustrations/incline-bench-press-1-1000x1000.jpg",
+			"example": true
+		},
+		{
+			"name": "Dips",
+			"category": "chest",
+			"amount": 0,
+			"image": "https://static.strengthlevel.com/images/illustrations/dips-2-1000x1000.jpg",
+			"example": true
+		},
+		{
 			"name": "Deadlift (Barbell)",
 			"category": "back",
 			"amount": 0,
 			"image": "https://static.strengthlevel.com/images/illustrations/deadlift-2-1000x1000.jpg",
 			"example": true
+		},
+		{
+			"name": "Bent Over Row (Barbell)",
+			"category": "back",
+			"amount": 0,
+			"image": "https://static.strengthlevel.com/images/illustrations/bent-over-row-1-1000x1000.jpg",
+			"example": true
+		},
+		{
+			"name": "Lat Pulldown (Cable)",
+			"category": "back",
+			"amount": 0,
+			"image": "https://static.strengthlevel.com/images/illustrations/lat-pulldown-1-1000x1000.jpg",
+			"example": true
+		},
+		{
+			"name": "Pull Up",
+			"category": "back",
+			"amount": 0,
+			"image": "https://static.strengthlevel.com/images/illustrations/pull-ups-2-1000x1000.jpg",
+			"example": false
 		},
 		{
 			"name": "Overhead Press (Barbell)",
@@ -22,10 +57,66 @@
 			"example": true
 		},
 		{
+			"name": "Shoulder Overhead Press (Dumbbell)",
+			"category": "shoulder",
+			"amount": 0,
+			"image": "https://static.strengthlevel.com/images/illustrations/dumbbell-shoulder-press-1-1000x1000.jpg",
+			"example": true
+		},
+		{
+			"name": "Lateral Raise (Dumbbell)",
+			"category": "shoulder",
+			"amount": 0,
+			"image": "https://static.strengthlevel.com/images/illustrations/dumbbell-lateral-raise-2-1000x1000.jpg",
+			"example": true
+		},
+		{
 			"name": "Squat (Barbell)",
 			"category": "leg",
 			"amount": 0,
 			"image": "https://static.strengthlevel.com/images/illustrations/squat-2-1000x1000.jpg",
+			"example": true
+		},
+		{
+			"name": "Leg Extension (Machine)",
+			"category": "leg",
+			"amount": 0,
+			"image": "https://static.strengthlevel.com/images/illustrations/leg-extension-2-1000x1000.jpg",
+			"example": true
+		},
+		{
+			"name": "Lunge (Dumbbell)",
+			"category": "leg",
+			"amount": 0,
+			"image": "https://static.strengthlevel.com/images/illustrations/dumbbell-lunge-4-1000x1000.jpg",
+			"example": true
+		},
+		{
+			"name": "Bicep Curl (Barbell)",
+			"category": "bicep",
+			"amount": 0,
+			"image": "https://static.strengthlevel.com/images/illustrations/barbell-curl-2-1000x1000.jpg",
+			"example": true
+		},
+		{
+			"name": "Hammer Curl (Dumbbell)",
+			"category": "bicep",
+			"amount": 0,
+			"image": "https://static.strengthlevel.com/images/illustrations/hammer-curl-2-1000x1000.jpg",
+			"example": true
+		},
+		{
+			"name": "Lying Tricep Extension (Barbell)",
+			"category": "tricep",
+			"amount": 0,
+			"image": "https://static.strengthlevel.com/images/illustrations/lying-tricep-extension-2-1000x1000.jpg",
+			"example": true
+		},
+		{
+			"name": "Tricep Pushdown (Cable)",
+			"category": "tricep",
+			"amount": 0,
+			"image": "https://static.strengthlevel.com/images/illustrations/tricep-pushdown-1-1000x1000.jpg",
 			"example": true
 		}
 	]
