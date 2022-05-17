@@ -28,11 +28,11 @@ const NavBox = styled.ul`
 		opacity: 0.6;
 		& img {
 			display: block;
-			height: 30px;
+			height: 32px;
 			margin: 0 auto;
 		}
 		& span {
-			font-size: 12px;
+			font-size: 10px;
 			color: #fff;
 		}
 		&.on {
