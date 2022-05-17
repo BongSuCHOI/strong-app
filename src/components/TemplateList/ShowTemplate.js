@@ -1,5 +1,3 @@
-import styled from "styled-components";
-
 import Modal from "../UI/Modal";
 import WorkoutList from "../WorkoutList/WorkoutList";
 import Button from "../UI/Button";
