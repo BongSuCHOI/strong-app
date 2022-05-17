@@ -16,14 +16,19 @@ const BackdropBox = styled.div`
 
 const ModalBox = styled.div`
 	position: fixed;
-	top: 20vh;
-	left: 5%;
-	width: 90%;
+	top: 50%;
+	left: 15px;
+	transform: translateY(-50%);
+	width: calc(100% - 30px);
+	max-height: 85vh;
 	background: #fff;
-	padding: 1rem;
-	border-radius: 14px;
+	padding: 15px;
+	border-radius: 15px;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 	z-index: 30;
+	& .content {
+		overflow-y: scroll;
+	}
 `;
 
 const TitleBox = styled.div`
@@ -31,10 +36,12 @@ const TitleBox = styled.div`
 	grid-template-columns: 20% 60% 20%;
 	align-items: center;
 	justify-content: space-between;
+	margin-bottom: 15px;
 	& .title {
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
+		height: 24px;
 		text-align: center;
 		font-weight: bold;
 		font-size: 18px;
@@ -63,7 +70,7 @@ function Backdrop(props) {
 function ModalOverlay(props) {
 	return (
 		<ModalBox>
-			<div className="content">
+			<div>
 				<TitleBox>
 					<CloseBtn onClick={props.onHide}>
 						<ArrClose fill="#000" width="24px" height="24px" />
@@ -71,7 +78,7 @@ function ModalOverlay(props) {
 					<p className="title">{props.title}</p>
 					<button className="sub_action">{props.subActionName}</button>
 				</TitleBox>
-				<div>{props.children}</div>
+				<div className="content">{props.children}</div>
 			</div>
 		</ModalBox>
 	);
