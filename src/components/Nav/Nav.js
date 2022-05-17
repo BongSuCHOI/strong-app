@@ -13,6 +13,7 @@ const NavBox = styled.ul`
 	align-items: center;
 	justify-content: space-between;
 	width: 100%;
+	max-width: 768px;
 	margin-top: 70px;
 	box-shadow: 0px -5px 9px rgba(0, 0, 0, 0.25);
 	background: #293036;
