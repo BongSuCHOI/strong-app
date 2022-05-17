@@ -3,6 +3,7 @@
 		{
 			"name": "Bench Press (Barbell)",
 			"category": "chest",
+			"categoryKO": "가슴",
 			"amount": 0,
 			"image": "https://static.strengthlevel.com/images/illustrations/bench-press-1-1000x1000.jpg",
 			"example": true
@@ -10,6 +11,7 @@
 		{
 			"name": "Incline Bench Press (Barbell)",
 			"category": "chest",
+			"categoryKO": "가슴",
 			"amount": 0,
 			"image": "https://static.strengthlevel.com/images/illustrations/incline-bench-press-1-1000x1000.jpg",
 			"example": true
@@ -17,6 +19,7 @@
 		{
 			"name": "Dips",
 			"category": "chest",
+			"categoryKO": "가슴",
 			"amount": 0,
 			"image": "https://static.strengthlevel.com/images/illustrations/dips-2-1000x1000.jpg",
 			"example": true
@@ -24,6 +27,7 @@
 		{
 			"name": "Deadlift (Barbell)",
 			"category": "back",
+			"categoryKO": "등",
 			"amount": 0,
 			"image": "https://static.strengthlevel.com/images/illustrations/deadlift-2-1000x1000.jpg",
 			"example": true
@@ -31,6 +35,7 @@
 		{
 			"name": "Bent Over Row (Barbell)",
 			"category": "back",
+			"categoryKO": "등",
 			"amount": 0,
 			"image": "https://static.strengthlevel.com/images/illustrations/bent-over-row-1-1000x1000.jpg",
 			"example": true
@@ -38,6 +43,7 @@
 		{
 			"name": "Lat Pulldown (Cable)",
 			"category": "back",
+			"categoryKO": "등",
 			"amount": 0,
 			"image": "https://static.strengthlevel.com/images/illustrations/lat-pulldown-1-1000x1000.jpg",
 			"example": true
@@ -45,6 +51,7 @@
 		{
 			"name": "Pull Up",
 			"category": "back",
+			"categoryKO": "등",
 			"amount": 0,
 			"image": "https://static.strengthlevel.com/images/illustrations/pull-ups-2-1000x1000.jpg",
 			"example": false
@@ -52,6 +59,7 @@
 		{
 			"name": "Overhead Press (Barbell)",
 			"category": "shoulder",
+			"categoryKO": "어깨",
 			"amount": 0,
 			"image": "https://static.strengthlevel.com/images/illustrations/shoulder-press-1-1000x1000.jpg",
 			"example": true
@@ -59,6 +67,7 @@
 		{
 			"name": "Shoulder Overhead Press (Dumbbell)",
 			"category": "shoulder",
+			"categoryKO": "어깨",
 			"amount": 0,
 			"image": "https://static.strengthlevel.com/images/illustrations/dumbbell-shoulder-press-1-1000x1000.jpg",
 			"example": true
@@ -66,6 +75,7 @@
 		{
 			"name": "Lateral Raise (Dumbbell)",
 			"category": "shoulder",
+			"categoryKO": "어깨",
 			"amount": 0,
 			"image": "https://static.strengthlevel.com/images/illustrations/dumbbell-lateral-raise-2-1000x1000.jpg",
 			"example": true
@@ -73,6 +83,7 @@
 		{
 			"name": "Squat (Barbell)",
 			"category": "leg",
+			"categoryKO": "다리",
 			"amount": 0,
 			"image": "https://static.strengthlevel.com/images/illustrations/squat-2-1000x1000.jpg",
 			"example": true
@@ -80,6 +91,7 @@
 		{
 			"name": "Leg Extension (Machine)",
 			"category": "leg",
+			"categoryKO": "다리",
 			"amount": 0,
 			"image": "https://static.strengthlevel.com/images/illustrations/leg-extension-2-1000x1000.jpg",
 			"example": true
@@ -87,6 +99,7 @@
 		{
 			"name": "Lunge (Dumbbell)",
 			"category": "leg",
+			"categoryKO": "다리",
 			"amount": 0,
 			"image": "https://static.strengthlevel.com/images/illustrations/dumbbell-lunge-4-1000x1000.jpg",
 			"example": true
@@ -94,6 +107,7 @@
 		{
 			"name": "Bicep Curl (Barbell)",
 			"category": "bicep",
+			"categoryKO": "팔",
 			"amount": 0,
 			"image": "https://static.strengthlevel.com/images/illustrations/barbell-curl-2-1000x1000.jpg",
 			"example": true
@@ -101,6 +115,7 @@
 		{
 			"name": "Hammer Curl (Dumbbell)",
 			"category": "bicep",
+			"categoryKO": "팔",
 			"amount": 0,
 			"image": "https://static.strengthlevel.com/images/illustrations/hammer-curl-2-1000x1000.jpg",
 			"example": true
@@ -108,6 +123,7 @@
 		{
 			"name": "Lying Tricep Extension (Barbell)",
 			"category": "tricep",
+			"categoryKO": "팔",
 			"amount": 0,
 			"image": "https://static.strengthlevel.com/images/illustrations/lying-tricep-extension-2-1000x1000.jpg",
 			"example": true
@@ -115,6 +131,7 @@
 		{
 			"name": "Tricep Pushdown (Cable)",
 			"category": "tricep",
+			"categoryKO": "팔",
 			"amount": 0,
 			"image": "https://static.strengthlevel.com/images/illustrations/tricep-pushdown-1-1000x1000.jpg",
 			"example": true
