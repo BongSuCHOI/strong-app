@@ -1,10 +1,6 @@
-import React, { useContext } from "react";
-
 import List from "./List";
 
 import styled from "styled-components";
-
-import WorkoutContext from "../../store/workout-context";
 
 import { ArrDown } from "../UI/ArrowIcon";
 
@@ -52,9 +48,7 @@ const TemplateDiv = styled.div`
 `;
 
 function TemplateList(props) {
-	const workoutCtx = useContext(WorkoutContext);
-
-	const exampleWorkout = workoutCtx.workout.filter((data) => data.example);
+	const exampleWorkout = props.workoutData.filter((data) => data.example);
 
 	const reduceData = exampleWorkout.reduce((acc, curr) => {
 		const category = curr["category"];
@@ -99,7 +93,9 @@ function TemplateList(props) {
 							key={list.category}
 							category={list.category}
 							data={list.data}
-							onShowModal={props.onShowModal}></List>
+							onShowModal={props.onShowModal}
+							onSelectTemplateData={props.onSelectTemplateData}
+						/>
 					))}
 			</ul>
 		</TemplateDiv>

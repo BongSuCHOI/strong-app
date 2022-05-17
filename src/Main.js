@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import styled from "styled-components";
 
+import WorkoutContext from "./store/workout-context";
 import ModalContext from "./store/modal-context";
 
 import PageTitle from "./components/UI/PageTItle";
@@ -27,11 +28,20 @@ const Template = styled.div`
 `;
 
 function Main() {
+	const workoutCtx = useContext(WorkoutContext);
 	const modalCtx = useContext(ModalContext);
+
+	const [selectTempData, setSelectTempData] = useState();
+
+	function selectTemplateData(data) {
+		setSelectTempData(data);
+	}
 
 	return (
 		<>
-			{modalCtx.isVisible && <ShowTemplate onHideModal={modalCtx.hideModalHandelr}/>}
+			{modalCtx.isVisible && (
+				<ShowTemplate onHideModal={modalCtx.hideModalHandelr} tempData={selectTempData} />
+			)}
 			<PageTitle>워크아웃 시작</PageTitle>
 			<QuickStart>
 				<p>빠른 시작</p>
@@ -39,8 +49,14 @@ function Main() {
 			</QuickStart>
 			<Template>
 				<h3>템플릿</h3>
-				<TemplateList type={"custom"}>내 템플릿</TemplateList>
-				<TemplateList type={"example"} onShowModal={modalCtx.showModalHandelr}>
+				<TemplateList type={"custom"} workoutData={workoutCtx.workout}>
+					내 템플릿
+				</TemplateList>
+				<TemplateList
+					type={"example"}
+					workoutData={workoutCtx.workout}
+					onShowModal={modalCtx.showModalHandelr}
+					onSelectTemplateData={selectTemplateData}>
 					예제 템플릿
 				</TemplateList>
 			</Template>

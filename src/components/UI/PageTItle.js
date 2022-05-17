@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const TitleBox = styled.div`
-	& span {
+	& button {
 		display: block;
 		height: 16px;
 		margin: 20px 0;
@@ -18,7 +18,7 @@ const TitleBox = styled.div`
 function PageTitle(props) {
 	return (
 		<TitleBox subAlign={props.subAlign}>
-			<span>{props.sub ? props.subName : ""}</span>
+			<button>{props.subActionName}</button>
 			<h2>{props.children}</h2>
 		</TitleBox>
 	);

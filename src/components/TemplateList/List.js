@@ -52,6 +52,11 @@ function List(props) {
 	const toStringWorkoutNames = workoutNames ? workoutNames.join(", ") : "";
 	const categoryUpperCase = props.category?.charAt(0).toUpperCase() + props.category?.slice(1);
 
+	function selectTempData() {
+		props.onSelectTemplateData({ category: categoryUpperCase, data: props.data });
+		props.onShowModal();
+	}
+
 	return (
 		<li>
 			{props.custom ? (
@@ -66,7 +71,7 @@ function List(props) {
 				<ListBox>
 					<div className="subject_box">
 						<p>{categoryUpperCase}</p>
-						<button onClick={props.onShowModal}>
+						<button onClick={selectTempData}>
 							<ArrRight width="23px" height="23px" />
 						</button>
 					</div>

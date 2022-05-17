@@ -31,7 +31,16 @@ function Backdrop(props) {
 function ModalOverlay(props) {
 	return (
 		<ModalBox>
-			<div className="content">{props.children}</div>
+			<div className="content">
+				<div className="title">
+					<button className="close" onClick={props.onHideModal}>
+						<img />
+					</button>
+					<p>{props.title}</p>
+					<button>{props.subActionName}</button>
+				</div>
+				<div>{props.children}</div>
+			</div>
 		</ModalBox>
 	);
 }
@@ -43,7 +52,12 @@ function Modal(props) {
 		<>
 			{ReactDom.createPortal(<Backdrop onClick={props.onHideModal} />, portalElement)}
 			{ReactDom.createPortal(
-				<ModalOverlay onHide={props.onHideModal}>{props.children}</ModalOverlay>,
+				<ModalOverlay
+					onHide={props.onHideModal}
+					title={props.title}
+					subActionName={props.subActionName}>
+					{props.children}
+				</ModalOverlay>,
 				portalElement
 			)}
 		</>
