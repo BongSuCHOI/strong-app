@@ -43,7 +43,6 @@ function WorkoutList(props) {
 	return (
 		<ListBox>
 			{props.listData.map((data) => {
-				console.log(data);
 				return (
 					<List key={data.name}>
 						<img src={data.image} alt={data.name} />
