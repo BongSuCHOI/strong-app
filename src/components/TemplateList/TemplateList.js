@@ -6,12 +6,27 @@ import styled from "styled-components";
 
 import WorkoutContext from "../../store/workout-context";
 
+import { ArrDown } from "../UI/ArrowIcon";
+
 const TemplateDiv = styled.div`
 	margin-top: 30px;
 
 	& .template_count {
-		margin-bottom: 20px;
-		font-weight: 700;
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		p {
+			margin-bottom: 20px;
+			font-weight: 700;
+		}
+		button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 18px;
+			background: #ecf6ff;
+			border-radius: 5px;
+		}
 	}
 
 	& .template_list {
@@ -44,10 +59,19 @@ function TemplateList(props) {
 	const reduceData = exampleWorkout.reduce((acc, curr) => {
 		const category = curr["category"];
 
-		if (!acc[category]) {
+		if (!acc[category] && category !== "bicep" && category !== "tricep") {
 			acc[category] = [];
 		}
-		acc[category].push(curr);
+
+		if (curr.category === "tricep") {
+			acc["chest"].push(curr);
+		} else if (curr.category === "bicep") {
+			acc["back"].push(curr);
+		} else if (curr.category === "core") {
+			acc["leg"].push(curr);
+		} else {
+			acc[category].push(curr);
+		}
 
 		return acc;
 	}, {});
@@ -57,18 +81,16 @@ function TemplateList(props) {
 		return acc;
 	}, []);
 
-	// const exampleWorkout = workoutCtx.workout.filter((data) => data.example);
-	// const chestExample = exampleWorkout.filter((data) => data.category === "chest");
-	// const backExample = exampleWorkout.filter((data) => data.category === "back");
-	// const legExample = exampleWorkout.filter((data) => data.category === "leg");
-	// const shoulderExample = exampleWorkout.filter((data) => data.category === "shoulder");
-	// let resArr = [chestExample, backExample, legExample, shoulderExample];
-
 	return (
 		<TemplateDiv>
-			<p className="template_count">
-				{props.children} <span>(0)</span>
-			</p>
+			<div className="template_count">
+				<p>
+					{props.children} <span>(0)</span>
+				</p>
+				<button>
+					<ArrDown />
+				</button>
+			</div>
 			<ul className="template_list">
 				{props.type === "custom" && <List custom={true} />}
 				{props.type === "example" &&
