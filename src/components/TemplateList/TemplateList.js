@@ -85,7 +85,7 @@ function TemplateList(props) {
 		<TemplateDiv>
 			<div className="template_count">
 				<p>
-					{props.children} <span>(0)</span>
+					{props.children} <span>({resArr.length})</span>
 				</p>
 				<button>
 					<ArrDown />
@@ -95,7 +95,11 @@ function TemplateList(props) {
 				{props.type === "custom" && <List custom={true} />}
 				{props.type === "example" &&
 					resArr.map((list) => (
-						<List key={list.category} category={list.category} data={list.data}></List>
+						<List
+							key={list.category}
+							category={list.category}
+							data={list.data}
+							onShowModal={props.onShowModal}></List>
 					))}
 			</ul>
 		</TemplateDiv>

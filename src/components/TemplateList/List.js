@@ -66,7 +66,7 @@ function List(props) {
 				<ListBox>
 					<div className="subject_box">
 						<p>{categoryUpperCase}</p>
-						<button>
+						<button onClick={props.onShowModal}>
 							<ArrRight width="23px" height="23px" />
 						</button>
 					</div>

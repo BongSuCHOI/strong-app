@@ -1,4 +1,5 @@
 import WorkoutProvider from "./store/WorkoutProvider";
+import ModalProvider from "./store/ModalProvider";
 
 // components
 import Layout from "./components/UI/Layout";
@@ -19,7 +20,9 @@ function App() {
 		<AppWrapper>
 			<WorkoutProvider>
 				<Layout>
-					<Main />
+					<ModalProvider>
+						<Main />
+					</ModalProvider>
 				</Layout>
 			</WorkoutProvider>
 			<Nav />
