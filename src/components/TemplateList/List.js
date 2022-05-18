@@ -13,6 +13,7 @@ const ListLi = styled.li`
 		margin-bottom: 0;
 	}
 `;
+
 const AddBtn = styled.button`
 	display: flex;
 	align-items: center;
@@ -20,9 +21,12 @@ const AddBtn = styled.button`
 	width: 100%;
 	height: 100%;
 	& p {
+		line-height: 1.3;
+		font-weight: 700;
 		color: #35a7ff;
 	}
 `;
+
 const ListBox = styled.div`
 	width: 100%;
 	text-align: left;
@@ -40,6 +44,7 @@ const ListBox = styled.div`
 		color: #999;
 	}
 `;
+
 const SubjectBox = styled.div`
 	display: flex;
 	align-items: flex-start;

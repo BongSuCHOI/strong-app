@@ -7,6 +7,7 @@ import { ArrDown } from "../UI/ArrowIcon";
 const TemplateDiv = styled.div`
 	margin-top: 30px;
 `;
+
 const TemplateCount = styled.div`
 	display: flex;
 	align-items: flex-start;
@@ -24,6 +25,7 @@ const TemplateCount = styled.div`
 		border-radius: 5px;
 	}
 `;
+
 const TemplateListBox = styled.ul`
 	display: flex;
 	flex-wrap: wrap;

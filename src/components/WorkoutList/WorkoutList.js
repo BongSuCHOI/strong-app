@@ -11,9 +11,14 @@ const List = styled.li`
 	width: 100%;
 	padding: 5px 0;
 	border-bottom: 1px solid #dcdcdc;
-	& > img {
-		height: 50px;
-		margin-right: 15px;
+`;
+
+const ImgBox = styled.div`
+	width: 50px;
+	height: 50px;
+	margin-right: 15px;
+	& img {
+		height: 100%;
 	}
 `;
 
@@ -45,7 +50,9 @@ function WorkoutList(props) {
 			{props.listData.map((data) => {
 				return (
 					<List key={data.name}>
-						<img src={data.image} alt={data.name} />
+						<ImgBox className="img_box">
+							<img src={data.image} alt={data.name} />
+						</ImgBox>
 						<InfoBox>
 							<p className="name">{data.name}</p>
 							<div>
