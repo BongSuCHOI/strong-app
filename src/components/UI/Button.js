@@ -7,8 +7,28 @@ const Btn = styled.button`
 	text-align: center;
 	font-weight: 500;
 	font-size: ${(props) => (props.small ? "14px" : "16px")};
-	color: ${(props) => (props.theme === "gray" ? "#000" : "#fff")};
-	background: ${(props) => (props.theme === "gray" ? "#eaeaea" : "#35a7ff")};
+	color: ${(props) => {
+		if (props.theme === "gray") {
+			return "#000";
+		} else if (props.theme === "sky") {
+			return "#35a7ff";
+		} else if (props.theme === "red") {
+			return "#de6769";
+		} else {
+			return "#fff";
+		}
+	}};
+	background: ${(props) => {
+		if (props.theme === "gray") {
+			return "#eaeaea";
+		} else if (props.theme === "sky") {
+			return "#ecf6ff";
+		} else if (props.theme === "red") {
+			return "#fdefef";
+		} else {
+			return "#35a7ff";
+		}
+	}};
 	border-radius: 6px;
 `;
 
