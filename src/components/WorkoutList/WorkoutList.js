@@ -11,7 +11,7 @@ const List = styled.li`
 	width: 100%;
 	padding: 5px 0;
 	border-bottom: 1px solid #dcdcdc;
-	& img {
+	& > img {
 		height: 50px;
 		margin-right: 15px;
 	}

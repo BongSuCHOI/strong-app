@@ -6,45 +6,28 @@ import { ArrDown } from "../UI/ArrowIcon";
 
 const TemplateDiv = styled.div`
 	margin-top: 30px;
-
-	& .template_count {
-		display: flex;
-		align-items: flex-start;
-		justify-content: space-between;
-		p {
-			margin-bottom: 20px;
-			font-weight: 700;
-		}
-		button {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			height: 18px;
-			background: #ecf6ff;
-			border-radius: 5px;
-		}
+`;
+const TemplateCount = styled.div`
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	p {
+		margin-bottom: 20px;
+		font-weight: 700;
 	}
-
-	& .template_list {
+	button {
 		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
-		li {
-			width: calc(50% - 7.5px);
-			height: 120px;
-			padding: 15px;
-			margin-bottom: 15px;
-			border: 1px solid #ccc;
-			border-radius: 10px;
-			&:nth-last-child(-n + 2) {
-				margin-bottom: 0;
-			}
-			p {
-				line-height: 1.3;
-				font-weight: 700;
-			}
-		}
+		align-items: center;
+		justify-content: center;
+		height: 18px;
+		background: #ecf6ff;
+		border-radius: 5px;
 	}
+`;
+const TemplateListBox = styled.ul`
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 `;
 
 function TemplateList(props) {
@@ -77,15 +60,15 @@ function TemplateList(props) {
 
 	return (
 		<TemplateDiv>
-			<div className="template_count">
+			<TemplateCount>
 				<p>
 					{props.children} <span>({resArr.length})</span>
 				</p>
 				<button>
 					<ArrDown />
 				</button>
-			</div>
-			<ul className="template_list">
+			</TemplateCount>
+			<TemplateListBox>
 				{props.type === "custom" && <List custom={true} />}
 				{props.type === "example" &&
 					resArr.map((list) => (
@@ -97,7 +80,7 @@ function TemplateList(props) {
 							onSelectTemplateData={props.onSelectTemplateData}
 						/>
 					))}
-			</ul>
+			</TemplateListBox>
 		</TemplateDiv>
 	);
 }

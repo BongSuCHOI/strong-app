@@ -2,6 +2,17 @@ import styled from "styled-components";
 
 import { ArrRight } from "../UI/ArrowIcon";
 
+const ListLi = styled.li`
+	width: calc(50% - 7.5px);
+	height: 120px;
+	padding: 15px;
+	margin-bottom: 15px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	&:nth-last-child(-n + 2) {
+		margin-bottom: 0;
+	}
+`;
 const AddBtn = styled.button`
 	display: flex;
 	align-items: center;
@@ -15,23 +26,6 @@ const AddBtn = styled.button`
 const ListBox = styled.div`
 	width: 100%;
 	text-align: left;
-	& .subject_box {
-		display: flex;
-		align-items: flex-start;
-		justify-content: space-between;
-		p {
-			margin-bottom: 5px;
-			font-size: 18px;
-		}
-		button {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			height: 23px;
-			background: #ecf6ff;
-			border-radius: 5px;
-		}
-	}
 	& span {
 		overflow: hidden;
 		display: -webkit-box;
@@ -46,6 +40,25 @@ const ListBox = styled.div`
 		color: #999;
 	}
 `;
+const SubjectBox = styled.div`
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	p {
+		margin-bottom: 5px;
+		line-height: 1.3;
+		font-weight: 700;
+		font-size: 18px;
+	}
+	button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 23px;
+		background: #ecf6ff;
+		border-radius: 5px;
+	}
+`;
 
 function List(props) {
 	const workoutNames = props.data?.map((data) => data.name);
@@ -58,7 +71,7 @@ function List(props) {
 	}
 
 	return (
-		<li>
+		<ListLi>
 			{props.custom ? (
 				<AddBtn>
 					<p>
@@ -69,16 +82,16 @@ function List(props) {
 				</AddBtn>
 			) : (
 				<ListBox>
-					<div className="subject_box">
+					<SubjectBox>
 						<p>{categoryUpperCase}</p>
 						<button onClick={selectTempData}>
 							<ArrRight width="23px" height="23px" />
 						</button>
-					</div>
+					</SubjectBox>
 					<span>{toStringWorkoutNames}</span>
 				</ListBox>
 			)}
-		</li>
+		</ListLi>
 	);
 }
 

@@ -22,7 +22,7 @@ const QuickStart = styled.div`
 const Template = styled.div`
 	padding-bottom: 40px;
 
-	& h3 {
+	& > h3 {
 		font-size: 24px;
 	}
 `;
