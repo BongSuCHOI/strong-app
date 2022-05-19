@@ -43,7 +43,7 @@ const NavBox = styled.ul`
 
 function Nav() {
 	return (
-		<NavBox>
+		<NavBox id="navigation">
 			<li>
 				<a>
 					<img src={profile} alt="프로필" />
