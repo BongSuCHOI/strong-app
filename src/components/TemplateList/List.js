@@ -49,13 +49,13 @@ const SubjectBox = styled.div`
 	display: flex;
 	align-items: flex-start;
 	justify-content: space-between;
-	p {
+	& p {
 		margin-bottom: 5px;
 		line-height: 1.3;
 		font-weight: 700;
 		font-size: 18px;
 	}
-	button {
+	& button {
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -75,17 +75,22 @@ function List(props) {
 		props.onShowModal();
 	}
 
+	function openWorkoutForm() {
+		props.onOpenWorkoutForm({ state: true, type: "workout" });
+	}
+
 	return (
 		<ListLi>
-			{props.custom ? (
-				<AddBtn>
+			{props.custom && (
+				<AddBtn onClick={openWorkoutForm}>
 					<p>
 						탭하여 새로운
 						<br />
 						템플릿 추가
 					</p>
 				</AddBtn>
-			) : (
+			)}
+			{props.data?.length > 0 && (
 				<ListBox>
 					<SubjectBox>
 						<p>{categoryUpperCase}</p>

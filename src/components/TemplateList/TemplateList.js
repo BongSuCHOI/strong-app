@@ -71,7 +71,9 @@ function TemplateList(props) {
 				</button>
 			</TemplateCount>
 			<TemplateListBox>
-				{props.type === "custom" && <List custom={true} />}
+				{props.type === "custom" && (
+					<List custom={true} onOpenWorkoutForm={props.onOpenWorkoutForm} />
+				)}
 				{props.type === "example" &&
 					resArr.map((list) => (
 						<List

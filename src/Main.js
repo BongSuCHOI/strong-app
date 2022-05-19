@@ -9,6 +9,7 @@ import PageTitle from "./components/UI/PageTItle";
 import Button from "./components/UI/Button";
 import TemplateList from "./components/TemplateList/TemplateList";
 import ShowTemplate from "./components/TemplateList/ShowTemplate";
+import WorkoutForm from "./components/WorkoutForm/WorkoutForm";
 
 const QuickStart = styled.div`
 	margin-bottom: 40px;
@@ -32,9 +33,14 @@ function Main() {
 	const modalCtx = useContext(ModalContext);
 
 	const [selectTempData, setSelectTempData] = useState();
+	const [isWorkoutFormOpen, setIsWorkoutFormOpen] = useState({ state: false, type: "" });
 
 	function selectTemplateData(data) {
 		setSelectTempData(data);
+	}
+
+	function handleOpenWorkoutForm(yn) {
+		setIsWorkoutFormOpen(yn);
 	}
 
 	return (
@@ -42,6 +48,7 @@ function Main() {
 			{modalCtx.isVisible && (
 				<ShowTemplate onHideModal={modalCtx.hideModalHandelr} tempData={selectTempData} />
 			)}
+			{isWorkoutFormOpen.state && <WorkoutForm type={isWorkoutFormOpen.type} />}
 			<PageTitle>워크아웃 시작</PageTitle>
 			<QuickStart>
 				<p>빠른 시작</p>
@@ -49,7 +56,10 @@ function Main() {
 			</QuickStart>
 			<Template>
 				<h3>템플릿</h3>
-				<TemplateList type={"custom"} workoutData={workoutCtx.workout}>
+				<TemplateList
+					type={"custom"}
+					workoutData={workoutCtx.workout}
+					onOpenWorkoutForm={handleOpenWorkoutForm}>
 					내 템플릿
 				</TemplateList>
 				<TemplateList
