@@ -33,6 +33,7 @@ const TemplateListBox = styled.ul`
 `;
 
 function TemplateList(props) {
+	const isCustom = props.type === "custom";
 	const exampleWorkout = props.workoutData.filter((data) => data.example);
 
 	const reduceData = exampleWorkout.reduce((acc, curr) => {
@@ -71,10 +72,8 @@ function TemplateList(props) {
 				</button>
 			</TemplateCount>
 			<TemplateListBox>
-				{props.type === "custom" && (
-					<List custom={true} onOpenWorkoutForm={props.onOpenWorkoutForm} />
-				)}
-				{props.type === "example" &&
+				{isCustom && <List custom={true} onOpenWorkoutForm={props.onOpenWorkoutForm} />}
+				{!isCustom &&
 					resArr.map((list) => (
 						<List
 							key={list.category}

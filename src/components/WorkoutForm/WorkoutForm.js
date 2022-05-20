@@ -7,11 +7,16 @@ import { ArrClose } from "../UI/ArrowIcon";
 import timerIco from "../../assets/image/ico/timer.png";
 
 const FormBox = styled.div`
+	position: fixed;
+	top: 0;
+	left: 0;
 	width: 100%;
 	height: ${() => {
 		const nav = document.getElementById("navigation");
 		return `calc(100vh - ${nav.clientHeight}px)`;
 	}};
+	padding: 0 15px;
+	background: #fff;
 `;
 
 const TitleBox = styled.div`
@@ -81,44 +86,47 @@ const SubjectBox = styled.div`
 	}
 `;
 
+/** props
+ * title="string"
+ * type="workout ot template"
+ *
+ * IconBtn이랑 TextBtn은 Button 컴포넌트로 대체 가능할거같음
+ */
 function WorkoutForm(props) {
-	/** props
-	 * title="string"
-	 * type="workout ot template"
-	 *
-	 * IconBtn이랑 TextBtn은 Button 컴포넌트로 대체 가능할거같음
-	 */
+	const isTemplate = props.type === "template";
 	let timer = "0:00";
 
 	return (
 		<FormBox>
 			<TitleBox>
 				<IconBtn>
-					{props.type === "template" ? (
-						<ArrClose width="24px" height="24px;" fill="#000" />
-					) : (
-						<img src={timerIco} alt="timer" />
-					)}
+					{isTemplate && <ArrClose width="24px" height="24px" fill="#000" />}
+					{!isTemplate && <img src={timerIco} alt="timer" />}
 				</IconBtn>
-				<h3>{props.type === "template" ? "새 템플릿" : timer}</h3>
-				<TextBtn type={props.type}>{props.type === "template" ? "저장" : "완료"}</TextBtn>
+				<h3>
+					{isTemplate && "새 템플릿"}
+					{!isTemplate && timer}
+				</h3>
+				<TextBtn type={props.type}>
+					{isTemplate && "저장"}
+					{!isTemplate && "완료"}
+				</TextBtn>
 			</TitleBox>
 			<SubjectBox>
-				{props.type === "template" ? (
-					<input type="text" placeholder="Template Name" />
-				) : (
+				{isTemplate && <input type="text" placeholder="Template Name" />}
+				{!isTemplate && (
 					<>
 						<p>더미 텍스트</p>
 						<span>{timer}</span>
 					</>
 				)}
 			</SubjectBox>
-			<ul className="workout_list_box">{props.type === "workout" && ""}</ul>
-			<Button small={true} theme={"sky"}>
+			<ul className="workout_list_box">{!isTemplate && ""}</ul>
+			<Button small={true} theme="sky">
 				워크아웃 추가
 			</Button>
-			{props.type === "workout" && (
-				<Button small={true} theme={"red"} margin="30px 0 0 0">
+			{!isTemplate && (
+				<Button small={true} theme="red" margin="30px 0 0 0">
 					워크아웃 취소
 				</Button>
 			)}
