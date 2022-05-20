@@ -27,7 +27,7 @@ const ModalBox = styled.div`
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 	z-index: 30;
 	& .content {
-		overflow-y: scroll;
+		height: 70vh;
 	}
 `;
 
