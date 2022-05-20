@@ -3,18 +3,19 @@ import React, { useState } from "react";
 import ModalContext from "./modal-context";
 
 function ModalProvider(props) {
-	const [modalIsShow, setModalIsShow] = useState(false);
+	const [modalIsShow, setModalIsShow] = useState({ visible: false, name: "" });
 
-	function showModalHandelr() {
-		setModalIsShow(true);
+	function showModalHandelr(name) {
+		setModalIsShow({ visible: true, name: name });
 	}
 
 	function hideModalHandelr() {
-		setModalIsShow(false);
+		setModalIsShow({ visible: false, name: "" });
 	}
 
 	const modalContext = {
-		isVisible: modalIsShow,
+		isVisible: modalIsShow.visible,
+		modalName: modalIsShow.name,
 		showModalHandelr: showModalHandelr,
 		hideModalHandelr: hideModalHandelr,
 	};
