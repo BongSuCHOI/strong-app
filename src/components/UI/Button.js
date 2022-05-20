@@ -34,7 +34,7 @@ const Btn = styled.button`
 
 function Button(props) {
 	return (
-		<Btn small={props.small} theme={props.theme} margin={props.margin}>
+		<Btn small={props.small} theme={props.theme} margin={props.margin} onClick={props.onClick}>
 			{props.children}
 		</Btn>
 	);
