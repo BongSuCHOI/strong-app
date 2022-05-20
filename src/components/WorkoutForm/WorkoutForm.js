@@ -96,10 +96,18 @@ function WorkoutForm(props) {
 	const isTemplate = props.type === "template";
 	let timer = "0:00";
 
+	function handleCloseForm() {
+		props.onClose({ state: false, type: "" });
+	}
+
+	function showAddWorkout() {
+		props.onShowModal("addWorkout");
+	}
+
 	return (
 		<FormBox>
 			<TitleBox>
-				<IconBtn>
+				<IconBtn onClick={isTemplate && handleCloseForm}>
 					{isTemplate && <ArrClose width="24px" height="24px" fill="#000" />}
 					{!isTemplate && <img src={timerIco} alt="timer" />}
 				</IconBtn>
@@ -122,7 +130,7 @@ function WorkoutForm(props) {
 				)}
 			</SubjectBox>
 			<ul className="workout_list_box">{!isTemplate && ""}</ul>
-			<Button small={true} theme="sky">
+			<Button small={true} theme="sky" onClick={showAddWorkout}>
 				워크아웃 추가
 			</Button>
 			{!isTemplate && (

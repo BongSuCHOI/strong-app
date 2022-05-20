@@ -72,11 +72,11 @@ function List(props) {
 
 	function selectTempData() {
 		props.onSelectTemplateData({ category: categoryUpperCase, data: props.data });
-		props.onShowModal();
+		props.onShowModal("template");
 	}
 
 	function openWorkoutForm() {
-		props.onOpenWorkoutForm({ state: true, type: "workout" });
+		props.onOpenWorkoutForm({ state: true, type: "template" });
 	}
 
 	return (

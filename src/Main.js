@@ -10,6 +10,7 @@ import Button from "./components/UI/Button";
 import TemplateList from "./components/TemplateList/TemplateList";
 import ShowTemplate from "./components/TemplateList/ShowTemplate";
 import WorkoutForm from "./components/WorkoutForm/WorkoutForm";
+import AddWorkout from "./components/WorkoutForm/AddWorkout";
 
 const QuickStart = styled.div`
 	margin-bottom: 40px;
@@ -43,12 +44,23 @@ function Main() {
 		setIsWorkoutFormOpen(yn);
 	}
 
+	const whatModal =
+		modalCtx.modalName === "template" ? (
+			<ShowTemplate onHideModal={modalCtx.hideModalHandelr} tempData={selectTempData} />
+		) : modalCtx.modalName === "addWorkout" ? (
+			<AddWorkout onHideModal={modalCtx.hideModalHandelr} />
+		) : null;
+
 	return (
 		<>
-			{modalCtx.isVisible && (
-				<ShowTemplate onHideModal={modalCtx.hideModalHandelr} tempData={selectTempData} />
+			{modalCtx.isVisible && whatModal}
+			{isWorkoutFormOpen.state && (
+				<WorkoutForm
+					type={isWorkoutFormOpen.type}
+					onClose={handleOpenWorkoutForm}
+					onShowModal={modalCtx.showModalHandelr}
+				/>
 			)}
-			{isWorkoutFormOpen.state && <WorkoutForm type={isWorkoutFormOpen.type} />}
 			<PageTitle>워크아웃 시작</PageTitle>
 			<QuickStart>
 				<p>빠른 시작</p>
