@@ -1,10 +1,15 @@
 import styled from "styled-components";
 
+const ListContainer = styled.div`
+	overflow: hidden;
+	width: 100%;
+	height: ${(props) => (props.height ? props.height : "100%")};
+`;
+
 const ListBox = styled.ul`
 	overflow-y: scroll;
 	width: 100%;
 	height: 100%;
-	border-top: 1px solid #dcdcdc;
 `;
 
 const List = styled.li`
@@ -13,6 +18,9 @@ const List = styled.li`
 	width: 100%;
 	padding: 5px 0;
 	border-bottom: 1px solid #dcdcdc;
+	&:first-child {
+		border-top: 1px solid #dcdcdc;
+	}
 `;
 
 const ImgBox = styled.div`
@@ -48,26 +56,28 @@ const InfoBox = styled.div`
 
 function WorkoutList(props) {
 	return (
-		<ListBox>
-			{props.listData.map((data) => {
-				return (
-					<List key={data.name}>
-						<ImgBox className="img_box">
-							<img src={data.image} alt={data.name} />
-						</ImgBox>
-						<InfoBox>
-							<p className="name">{data.name}</p>
-							<div>
-								<span className="category">{data.categoryKO}</span>
-								<span className="count">
-									{data.amount === 0 ? "" : data.amount}
-								</span>
-							</div>
-						</InfoBox>
-					</List>
-				);
-			})}
-		</ListBox>
+		<ListContainer height={props.height}>
+			<ListBox>
+				{props.listData.map((data) => {
+					return (
+						<List key={data.name}>
+							<ImgBox className="img_box">
+								<img src={data.image} alt={data.name} />
+							</ImgBox>
+							<InfoBox>
+								<p className="name">{data.name}</p>
+								<div>
+									<span className="category">{data.categoryKO}</span>
+									<span className="count">
+										{data.amount === 0 ? "" : data.amount}
+									</span>
+								</div>
+							</InfoBox>
+						</List>
+					);
+				})}
+			</ListBox>
+		</ListContainer>
 	);
 }
 

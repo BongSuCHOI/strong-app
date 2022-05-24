@@ -20,15 +20,12 @@ const ModalBox = styled.div`
 	left: 15px;
 	transform: translateY(-50%);
 	width: calc(100% - 30px);
-	max-height: 85vh;
+	// max-height: 85vh;
 	background: #fff;
 	padding: 15px;
 	border-radius: 15px;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 	z-index: 30;
-	& .content {
-		height: 70vh;
-	}
 `;
 
 const TitleBox = styled.div`
@@ -36,7 +33,7 @@ const TitleBox = styled.div`
 	grid-template-columns: 20% 60% 20%;
 	align-items: center;
 	justify-content: space-between;
-	margin-bottom: 15px;
+	margin-bottom: 20px;
 	& .title {
 		overflow: hidden;
 		text-overflow: ellipsis;
