@@ -9,19 +9,17 @@ const FormBox = styled.form`
 		padding: 0 15px;
 		font-weight: 500;
 		font-size: 16px;
-		background: #eaeaea;
+		background: ${({ theme }) => theme.lightGray};
 		border: none;
 		border-radius: 6px;
 		&::placeholder {
-			color: #ccc;
+			color: ${({ theme }) => theme.border};
 		}
 	}
 `;
 
 const CategoryBox = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+	${({ theme }) => theme.flexBox("center", "space-between")};
 	width: 100%;
 	height: 25px;
 	margin-top: 10px;
@@ -30,7 +28,7 @@ const CategoryBox = styled.div`
 		height: 100%;
 		font-weight: 500;
 		font-size: 14px;
-		background: #eaeaea;
+		background: ${({ theme }) => theme.lightGray};
 		border-radius: 6px;
 	}
 `;

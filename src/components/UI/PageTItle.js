@@ -7,7 +7,7 @@ const TitleBox = styled.div`
 		margin: 20px 0;
 		text-align: ${(props) => (props.subAlign === "right" ? "right" : "left")};
 		font-size: 16px;
-		color: #35a7ff;
+		color: ${({ theme }) => theme.primary};
 	}
 	& h2 {
 		margin-bottom: 50px;

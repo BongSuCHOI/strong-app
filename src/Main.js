@@ -14,7 +14,6 @@ import AddWorkout from "./components/WorkoutForm/AddWorkout";
 
 const QuickStart = styled.div`
 	margin-bottom: 40px;
-
 	& p {
 		margin-bottom: 20px;
 		font-weight: 700;
@@ -23,7 +22,6 @@ const QuickStart = styled.div`
 
 const Template = styled.div`
 	padding-bottom: 40px;
-
 	& > h3 {
 		font-size: 24px;
 	}

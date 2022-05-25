@@ -15,13 +15,12 @@ const BackdropBox = styled.div`
 `;
 
 const ModalBox = styled.div`
-	position: fixed;
+	${({ theme }) => theme.positionCenterY("fixed")};
 	top: 50%;
 	left: 15px;
-	transform: translateY(-50%);
 	width: calc(100% - 30px);
 	// max-height: 85vh;
-	background: #fff;
+	background: ${({ theme }) => theme.white};
 	padding: 15px;
 	border-radius: 15px;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
@@ -35,9 +34,7 @@ const TitleBox = styled.div`
 	justify-content: space-between;
 	margin-bottom: 20px;
 	& .title {
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
+		${({ theme }) => theme.ellipsis()}
 		height: 24px;
 		text-align: center;
 		font-weight: bold;
@@ -46,17 +43,15 @@ const TitleBox = styled.div`
 	& .sub_action {
 		text-align: right;
 		font-size: 16px;
-		color: #35a7ff;
+		color: ${({ theme }) => theme.primary};
 	}
 `;
 
 const CloseBtn = styled.button`
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	${({ theme }) => theme.flexBox("center", "center")}
 	width: 32px;
 	height: 24px;
-	background: #eaeaea;
+	background: ${({ theme }) => theme.lightGray};
 	border-radius: 5px;
 `;
 
@@ -70,7 +65,7 @@ function ModalOverlay(props) {
 			<div>
 				<TitleBox>
 					<CloseBtn onClick={props.onHide}>
-						<ArrClose fill="#000" width="24px" height="24px" />
+						<ArrClose fill={`${({ theme }) => theme.black}`} width="24px" height="24px" />
 					</CloseBtn>
 					<p className="title">{props.title}</p>
 					<button className="sub_action">{props.subActionName}</button>

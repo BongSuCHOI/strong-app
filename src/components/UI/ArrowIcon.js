@@ -3,7 +3,7 @@ import styled from "styled-components";
 const ArrowSVG = styled.svg`
 	width: ${(props) => (props.width ? props.width : "27px")};
 	height: ${(props) => (props.height ? props.height : "27px")};
-	fill: ${(props) => (props.fill ? props.fill : "#35a7ff")};
+	fill: ${(props) => (props.fill ? props.fill : ({ theme }) => theme.primary)};
 `;
 
 export function ArrDown(props) {

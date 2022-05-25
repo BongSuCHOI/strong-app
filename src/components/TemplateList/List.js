@@ -7,7 +7,7 @@ const ListLi = styled.li`
 	height: 120px;
 	padding: 15px;
 	margin-bottom: 15px;
-	border: 1px solid #ccc;
+	border: 1px solid ${({ theme }) => theme.border};
 	border-radius: 10px;
 	&:nth-last-child(-n + 2) {
 		margin-bottom: 0;
@@ -15,15 +15,13 @@ const ListLi = styled.li`
 `;
 
 const AddBtn = styled.button`
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	${({ theme }) => theme.flexBox("center", "center")};
 	width: 100%;
 	height: 100%;
 	& p {
 		line-height: 1.3;
 		font-weight: 700;
-		color: #35a7ff;
+		color: ${({ theme }) => theme.primary};
 	}
 `;
 
@@ -31,24 +29,16 @@ const ListBox = styled.div`
 	width: 100%;
 	text-align: left;
 	& span {
-		overflow: hidden;
-		display: -webkit-box;
-		word-wrap: break-word;
-		-webkit-line-clamp: 3;
-		-webkit-box-orient: vertical;
-		text-overflow: ellipsis;
-		height: 55px;
+		${({ theme }) => theme.ellipsis2("100%", "55px", "3")};
 		line-height: 1.3;
 		font-weight: 300;
 		font-size: 14px;
-		color: #999;
+		color: ${({ theme }) => theme.description};
 	}
 `;
 
 const SubjectBox = styled.div`
-	display: flex;
-	align-items: flex-start;
-	justify-content: space-between;
+	${({ theme }) => theme.flexBox("flex-start", "space-between")};
 	& p {
 		margin-bottom: 5px;
 		line-height: 1.3;
@@ -56,11 +46,9 @@ const SubjectBox = styled.div`
 		font-size: 18px;
 	}
 	& button {
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		${({ theme }) => theme.flexBox("center", "center")};
 		height: 23px;
-		background: #ecf6ff;
+		background: ${({ theme }) => theme.sky};
 		border-radius: 5px;
 	}
 `;

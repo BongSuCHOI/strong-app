@@ -1,3 +1,6 @@
+import styled, { ThemeProvider } from "styled-components";
+import { color, mixins } from "./styles/theme";
+
 import WorkoutProvider from "./store/WorkoutProvider";
 import ModalProvider from "./store/ModalProvider";
 
@@ -5,8 +8,6 @@ import ModalProvider from "./store/ModalProvider";
 import Layout from "./components/UI/Layout";
 import Main from "./Main";
 import Nav from "./components/Nav/Nav";
-
-import styled from "styled-components";
 
 const AppWrapper = styled.div`
 	position: relative;
@@ -17,16 +18,18 @@ const AppWrapper = styled.div`
 // render
 function App() {
 	return (
-		<AppWrapper>
-			<WorkoutProvider>
-				<Layout>
-					<ModalProvider>
-						<Main />
-					</ModalProvider>
-				</Layout>
-			</WorkoutProvider>
-			<Nav />
-		</AppWrapper>
+		<ThemeProvider theme={{ ...color, ...mixins }}>
+			<AppWrapper>
+				<WorkoutProvider>
+					<Layout>
+						<ModalProvider>
+							<Main />
+						</ModalProvider>
+					</Layout>
+				</WorkoutProvider>
+				<Nav />
+			</AppWrapper>
+		</ThemeProvider>
 	);
 }
 

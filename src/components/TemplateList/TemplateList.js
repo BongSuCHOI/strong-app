@@ -9,27 +9,21 @@ const TemplateDiv = styled.div`
 `;
 
 const TemplateCount = styled.div`
-	display: flex;
-	align-items: flex-start;
-	justify-content: space-between;
+	${({ theme }) => theme.flexBox("flex-start", "space-between")}
 	p {
 		margin-bottom: 20px;
 		font-weight: 700;
 	}
 	button {
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		${({ theme }) => theme.flexBox("center", "center")}
 		height: 18px;
-		background: #ecf6ff;
+		background: ${({ theme }) => theme.sky};
 		border-radius: 5px;
 	}
 `;
 
 const TemplateListBox = styled.ul`
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
+	${({ theme }) => theme.flexBox("stretch", "space-between", "row", "wrap")}
 `;
 
 function TemplateList(props) {

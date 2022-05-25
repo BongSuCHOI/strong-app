@@ -9,24 +9,24 @@ const Btn = styled.button`
 	font-size: ${(props) => (props.small ? "14px" : "16px")};
 	color: ${(props) => {
 		if (props.theme === "gray") {
-			return "#000";
+			return ({ theme }) => theme.black;
 		} else if (props.theme === "sky") {
-			return "#35a7ff";
+			return ({ theme }) => theme.primary;
 		} else if (props.theme === "red") {
-			return "#de6769";
+			return ({ theme }) => theme.red;
 		} else {
-			return "#fff";
+			return ({ theme }) => theme.white;
 		}
 	}};
 	background: ${(props) => {
 		if (props.theme === "gray") {
-			return "#eaeaea";
+			return ({ theme }) => theme.lightGray;
 		} else if (props.theme === "sky") {
-			return "#ecf6ff";
+			return ({ theme }) => theme.sky;
 		} else if (props.theme === "red") {
-			return "#fdefef";
+			return ({ theme }) => theme.lightRed;
 		} else {
-			return "#35a7ff";
+			return ({ theme }) => theme.primary;
 		}
 	}};
 	border-radius: 6px;

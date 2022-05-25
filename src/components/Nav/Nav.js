@@ -7,11 +7,9 @@ import workout from "../../assets/image/ico/nav_workout.png";
 import upgrade from "../../assets/image/ico/nav_upgrade.png";
 
 const NavBox = styled.ul`
+	${({ theme }) => theme.flexBox("center", "space-between")};
 	position: fixed;
 	bottom: 0;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
 	width: 100%;
 	max-width: 768px;
 	margin-top: 70px;
@@ -19,9 +17,7 @@ const NavBox = styled.ul`
 	background: #293036;
 
 	& li {
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		${({ theme }) => theme.flexBox("center", "center")};
 		width: 20%;
 		height: 70px;
 		text-align: center;
@@ -33,7 +29,7 @@ const NavBox = styled.ul`
 		}
 		& span {
 			font-size: 10px;
-			color: #fff;
+			color: ${({ theme }) => theme.white};
 		}
 		&.on {
 			opacity: 1;

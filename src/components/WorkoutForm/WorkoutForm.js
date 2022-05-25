@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-import WorkoutList from "../WorkoutList/WorkoutList";
 import Button from "../UI/Button";
 import { ArrClose } from "../UI/ArrowIcon";
 
@@ -16,7 +15,7 @@ const FormBox = styled.div`
 		return `calc(100vh - ${nav.clientHeight}px)`;
 	}};
 	padding: 0 15px;
-	background: #fff;
+	background: ${({ theme }) => theme.white};
 `;
 
 const TitleBox = styled.div`
@@ -34,13 +33,11 @@ const TitleBox = styled.div`
 `;
 
 const IconBtn = styled.button`
+	${({ theme }) => theme.flexBox("center", "center")};
 	justify-self: start;
-	display: flex;
-	align-items: center;
-	justify-content: center;
 	width: 45px;
 	height: 34px;
-	background: #eaeaea;
+	background: ${({ theme }) => theme.lightGray};
 	border-radius: 5px;
 	& img {
 		width: 24px;
@@ -56,8 +53,14 @@ const TextBtn = styled.button`
 	text-align: center;
 	font-weight: 500;
 	font-size: 16px;
-	color: #fff;
-	background: ${(props) => (props.type === "template" ? "#35a7ff" : "#67ca7a")};
+	color: ${({ theme }) => theme.white};
+	background: ${(props) => {
+		if (props.type === "template") {
+			return ({ theme }) => theme.primary;
+		} else {
+			return ({ theme }) => theme.green;
+		}
+	}};
 	border-radius: 5px;
 `;
 
@@ -70,7 +73,7 @@ const SubjectBox = styled.div`
 		font-size: 27px;
 		border: none;
 		&::placeholder {
-			color: #ccc;
+			color: ${({ theme }) => theme.placeholder};
 		}
 	}
 	& p {
@@ -82,7 +85,7 @@ const SubjectBox = styled.div`
 		margin-top: 10px;
 		font-weight: 500;
 		font-size: 16px;
-		color: #666;
+		color: ${({ theme }) => theme.description};
 	}
 `;
 
@@ -108,7 +111,13 @@ function WorkoutForm(props) {
 		<FormBox>
 			<TitleBox>
 				<IconBtn onClick={isTemplate && handleCloseForm}>
-					{isTemplate && <ArrClose width="24px" height="24px" fill="#000" />}
+					{isTemplate && (
+						<ArrClose
+							width="24px"
+							height="24px"
+							fill={`${({ theme }) => theme.balck}`}
+						/>
+					)}
 					{!isTemplate && <img src={timerIco} alt="timer" />}
 				</IconBtn>
 				<h3>

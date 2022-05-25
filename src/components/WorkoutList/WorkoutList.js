@@ -15,14 +15,19 @@ const ListBox = styled.ul`
 `;
 
 const List = styled.li`
-	display: flex;
-	align-items: center;
+	${({ theme }) => theme.flexBox("center")};
 	width: 100%;
 	padding: 5px 0;
-	border-bottom: 1px solid #dcdcdc;
-	background: ${(props) => (props.check ? "#ecf6ff" : "#fff")};
+	border-bottom: 1px solid ${({ theme }) => theme.border};
+	background: ${(props) => {
+		if (props.check) {
+			return ({ theme }) => theme.sky;
+		} else {
+			return ({ theme }) => theme.white;
+		}
+	}};
 	&:first-child {
-		border-top: 1px solid #dcdcdc;
+		border-top: 1px solid ${({ theme }) => theme.border};
 	}
 `;
 
@@ -36,17 +41,13 @@ const ImgBox = styled.div`
 `;
 
 const InfoBox = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
+	${({ theme }) => theme.flexBox("stretch", "center", "column")};
 	width: calc(100% - 65px);
 	min-height: 50px;
 `;
 
 const NameBox = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+	${({ theme }) => theme.flexBox("center", "space-between")};
 	margin-bottom: 5px;
 	line-height: 1.3;
 	font-weight: 700;
@@ -54,11 +55,9 @@ const NameBox = styled.div`
 `;
 
 const CountBox = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+	${({ theme }) => theme.flexBox("center", "space-between")};
 	& span {
-		color: #999;
+		color: ${({ theme }) => theme.description};
 		&.category {
 			font-size: 14px;
 		}
