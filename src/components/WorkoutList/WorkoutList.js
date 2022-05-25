@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { ArrCheck } from "../UI/ArrowIcon";
+
 const ListContainer = styled.div`
 	overflow: hidden;
 	width: 100%;
@@ -18,6 +20,7 @@ const List = styled.li`
 	width: 100%;
 	padding: 5px 0;
 	border-bottom: 1px solid #dcdcdc;
+	background: ${(props) => (props.check ? "#ecf6ff" : "#fff")};
 	&:first-child {
 		border-top: 1px solid #dcdcdc;
 	}
@@ -38,40 +41,63 @@ const InfoBox = styled.div`
 	justify-content: center;
 	width: calc(100% - 65px);
 	min-height: 50px;
-	& .name {
-		margin-bottom: 5px;
-		line-height: 1.3;
-		font-weight: 700;
-		font-size: 16px;
-	}
-	& div {
-		display: flex;
-		justify-content: space-between;
-		& span {
+`;
+
+const NameBox = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 5px;
+	line-height: 1.3;
+	font-weight: 700;
+	font-size: 16px;
+`;
+
+const CountBox = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	& span {
+		color: #999;
+		&.category {
 			font-size: 14px;
-			color: #999;
 		}
 	}
 `;
 
 function WorkoutList(props) {
+	function handlePropsOnClick(data) {
+		if (props.onClick) {
+			props.onClick(data);
+		} else {
+			return;
+		}
+	}
+
 	return (
 		<ListContainer height={props.height}>
 			<ListBox>
 				{props.listData.map((data) => {
 					return (
-						<List key={data.name}>
+						<List
+							key={data.name}
+							onClick={() => {
+								handlePropsOnClick(data);
+							}}>
 							<ImgBox className="img_box">
 								<img src={data.image} alt={data.name} />
 							</ImgBox>
 							<InfoBox>
-								<p className="name">{data.name}</p>
-								<div>
+								<NameBox className="name">
+									<p>{data.name}</p>
+									<ArrCheck width="20px" height="20px" />
+								</NameBox>
+								<CountBox>
 									<span className="category">{data.categoryKO}</span>
 									<span className="count">
-										{data.amount === 0 ? "" : data.amount}
+										{data.amount === 0 ? "0" : data.amount}
 									</span>
-								</div>
+								</CountBox>
 							</InfoBox>
 						</List>
 					);
