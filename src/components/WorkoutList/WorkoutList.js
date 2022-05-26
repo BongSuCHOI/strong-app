@@ -51,7 +51,6 @@ const NameBox = styled.div`
 	margin-bottom: 5px;
 	line-height: 1.3;
 	font-weight: 700;
-	font-size: 16px;
 `;
 
 const CountBox = styled.div`
@@ -59,7 +58,7 @@ const CountBox = styled.div`
 	& span {
 		color: ${({ theme }) => theme.description};
 		&.category {
-			font-size: 14px;
+			${({ theme }) => theme.font("sm")};
 		}
 	}
 `;

@@ -37,12 +37,10 @@ const TitleBox = styled.div`
 		${({ theme }) => theme.ellipsis()}
 		height: 24px;
 		text-align: center;
-		font-weight: bold;
-		font-size: 18px;
+		${({ theme }) => theme.font("lg", 700)}
 	}
 	& .sub_action {
 		text-align: right;
-		font-size: 16px;
 		color: ${({ theme }) => theme.primary};
 	}
 `;
@@ -65,7 +63,11 @@ function ModalOverlay(props) {
 			<div>
 				<TitleBox>
 					<CloseBtn onClick={props.onHide}>
-						<ArrClose fill={`${({ theme }) => theme.black}`} width="24px" height="24px" />
+						<ArrClose
+							fill={`${({ theme }) => theme.black}`}
+							width="24px"
+							height="24px"
+						/>
 					</CloseBtn>
 					<p className="title">{props.title}</p>
 					<button className="sub_action">{props.subActionName}</button>

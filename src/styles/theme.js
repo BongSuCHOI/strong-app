@@ -1,3 +1,32 @@
+const calcRem = (size) => `${size / 16}rem`;
+
+export const fontSize = {
+	font: (size = calcRem(16), weight) => {
+		let sizes = size;
+
+		if (size === "xs") {
+			sizes = calcRem(10);
+		} else if (size === "sm") {
+			sizes = calcRem(14);
+		} else if (size === "lg") {
+			sizes = calcRem(18);
+		} else if (size === "xl") {
+			sizes = calcRem(24);
+		} else if (size === "xxl") {
+			sizes = calcRem(27);
+		} else if (size === "title") {
+			sizes = calcRem(31);
+		} else {
+			sizes = size;
+		}
+
+		return `
+            font-weight: ${weight ? weight : ""};
+            font-size: ${sizes};
+        `;
+	},
+};
+
 export const color = {
 	// common
 	black: "#000",
@@ -15,6 +44,7 @@ export const color = {
 	red: "#de6769",
 	lightRed: "#fdefef",
 	green: "#67ca7a",
+	darkNavy: "#293036",
 };
 
 export const mixins = {

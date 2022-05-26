@@ -1,5 +1,6 @@
 import styled, { ThemeProvider } from "styled-components";
-import { color, mixins } from "./styles/theme";
+import { fontSize, color, mixins } from "./styles/theme";
+import GlobalStyle from "./styles/global";
 
 import WorkoutProvider from "./store/WorkoutProvider";
 import ModalProvider from "./store/ModalProvider";
@@ -18,7 +19,8 @@ const AppWrapper = styled.div`
 // render
 function App() {
 	return (
-		<ThemeProvider theme={{ ...color, ...mixins }}>
+		<ThemeProvider theme={{ ...fontSize, ...color, ...mixins }}>
+			<GlobalStyle />
 			<AppWrapper>
 				<WorkoutProvider>
 					<Layout>

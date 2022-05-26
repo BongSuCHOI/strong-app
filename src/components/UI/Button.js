@@ -5,25 +5,30 @@ const Btn = styled.button`
 	height: ${(props) => (props.small ? "30px" : "40px")};
 	margin: ${(props) => (props.margin ? props.margin : "0")};
 	text-align: center;
-	font-weight: 500;
-	font-size: ${(props) => (props.small ? "14px" : "16px")};
+	${(props) => {
+		if (props.small) {
+			return ({ theme }) => theme.font("sm", 500);
+		} else {
+			return "font-weight: 500";
+		}
+	}};
 	color: ${(props) => {
-		if (props.theme === "gray") {
+		if (props.type === "gray") {
 			return ({ theme }) => theme.black;
-		} else if (props.theme === "sky") {
+		} else if (props.type === "sky") {
 			return ({ theme }) => theme.primary;
-		} else if (props.theme === "red") {
+		} else if (props.type === "red") {
 			return ({ theme }) => theme.red;
 		} else {
 			return ({ theme }) => theme.white;
 		}
 	}};
 	background: ${(props) => {
-		if (props.theme === "gray") {
+		if (props.type === "gray") {
 			return ({ theme }) => theme.lightGray;
-		} else if (props.theme === "sky") {
+		} else if (props.type === "sky") {
 			return ({ theme }) => theme.sky;
-		} else if (props.theme === "red") {
+		} else if (props.type === "red") {
 			return ({ theme }) => theme.lightRed;
 		} else {
 			return ({ theme }) => theme.primary;
@@ -34,7 +39,7 @@ const Btn = styled.button`
 
 function Button(props) {
 	return (
-		<Btn small={props.small} theme={props.theme} margin={props.margin} onClick={props.onClick}>
+		<Btn small={props.small} type={props.type} margin={props.margin} onClick={props.onClick}>
 			{props.children}
 		</Btn>
 	);

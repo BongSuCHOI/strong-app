@@ -14,7 +14,7 @@ const NavBox = styled.ul`
 	max-width: 768px;
 	margin-top: 70px;
 	box-shadow: 0px -5px 9px rgba(0, 0, 0, 0.25);
-	background: #293036;
+	background: ${({ theme }) => theme.darkNavy};
 
 	& li {
 		${({ theme }) => theme.flexBox("center", "center")};
@@ -28,7 +28,7 @@ const NavBox = styled.ul`
 			margin: 0 auto;
 		}
 		& span {
-			font-size: 10px;
+			${({ theme }) => theme.font("xs")};
 			color: ${({ theme }) => theme.white};
 		}
 		&.on {
@@ -41,31 +41,31 @@ function Nav() {
 	return (
 		<NavBox id="navigation">
 			<li>
-				<a>
+				<a href="/">
 					<img src={profile} alt="프로필" />
 					<span>프로필</span>
 				</a>
 			</li>
 			<li>
-				<a>
+				<a href="/">
 					<img src={history} alt="이력" />
 					<span>이력</span>
 				</a>
 			</li>
 			<li className="on">
-				<a>
+				<a href="/">
 					<img src={add} alt="워크아웃 시작" />
 					<span>워크아웃 시작</span>
 				</a>
 			</li>
 			<li>
-				<a>
+				<a href="/">
 					<img src={workout} alt="운동" />
 					<span>운동</span>
 				</a>
 			</li>
 			<li>
-				<a>
+				<a href="/">
 					<img src={upgrade} alt="업그레이드" />
 					<span>업그레이드</span>
 				</a>

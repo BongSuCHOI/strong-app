@@ -30,9 +30,8 @@ const ListBox = styled.div`
 	text-align: left;
 	& span {
 		${({ theme }) => theme.ellipsis2("100%", "55px", "3")};
+		${({ theme }) => theme.font("sm", 300)};
 		line-height: 1.3;
-		font-weight: 300;
-		font-size: 14px;
 		color: ${({ theme }) => theme.description};
 	}
 `;
@@ -42,8 +41,7 @@ const SubjectBox = styled.div`
 	& p {
 		margin-bottom: 5px;
 		line-height: 1.3;
-		font-weight: 700;
-		font-size: 18px;
+		${({ theme }) => theme.font("lg", 700)};
 	}
 	& button {
 		${({ theme }) => theme.flexBox("center", "center")};

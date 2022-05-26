@@ -28,7 +28,6 @@ const TitleBox = styled.div`
 	margin-bottom: 30px;
 	& h3 {
 		justify-self: center;
-		font-size: 16px;
 	}
 `;
 
@@ -52,7 +51,6 @@ const TextBtn = styled.button`
 	line-height: 34px;
 	text-align: center;
 	font-weight: 500;
-	font-size: 16px;
 	color: ${({ theme }) => theme.white};
 	background: ${(props) => {
 		if (props.type === "template") {
@@ -69,22 +67,19 @@ const SubjectBox = styled.div`
 	margin-bottom: 56px;
 	& input[type="text"] {
 		width: 100%;
-		font-weight: bold;
-		font-size: 27px;
+		${({ theme }) => theme.font("xxl", 700)};
 		border: none;
 		&::placeholder {
 			color: ${({ theme }) => theme.placeholder};
 		}
 	}
 	& p {
-		font-weight: bold;
-		font-size: 27px;
+		${({ theme }) => theme.font("xxl", 700)};
 	}
 	& span {
 		display: block;
 		margin-top: 10px;
 		font-weight: 500;
-		font-size: 16px;
 		color: ${({ theme }) => theme.description};
 	}
 `;
@@ -139,11 +134,11 @@ function WorkoutForm(props) {
 				)}
 			</SubjectBox>
 			<ul className="workout_list_box">{!isTemplate && ""}</ul>
-			<Button small={true} theme="sky" onClick={showAddWorkout}>
+			<Button small={true} type="sky" onClick={showAddWorkout}>
 				워크아웃 추가
 			</Button>
 			{!isTemplate && (
-				<Button small={true} theme="red" margin="30px 0 0 0">
+				<Button small={true} type="red" margin="30px 0 0 0">
 					워크아웃 취소
 				</Button>
 			)}

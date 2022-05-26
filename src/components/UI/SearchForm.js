@@ -8,7 +8,6 @@ const FormBox = styled.form`
 		height: 35px;
 		padding: 0 15px;
 		font-weight: 500;
-		font-size: 16px;
 		background: ${({ theme }) => theme.lightGray};
 		border: none;
 		border-radius: 6px;
@@ -26,8 +25,7 @@ const CategoryBox = styled.div`
 	& button {
 		width: calc(20% - 8px);
 		height: 100%;
-		font-weight: 500;
-		font-size: 14px;
+		${({ theme }) => theme.font("sm", 500)};
 		background: ${({ theme }) => theme.lightGray};
 		border-radius: 6px;
 	}
