@@ -58,6 +58,15 @@ function Backdrop(props) {
 }
 
 function ModalOverlay(props) {
+	function handleSubAction() {
+		if (props.onSubAction) {
+			props.onSubAction();
+			props.onHide();
+		} else {
+			return;
+		}
+	}
+
 	return (
 		<ModalBox>
 			<div>
@@ -70,7 +79,9 @@ function ModalOverlay(props) {
 						/>
 					</CloseBtn>
 					<p className="title">{props.title}</p>
-					<button className="sub_action">{props.subActionName}</button>
+					<button className="sub_action" onClick={handleSubAction}>
+						{props.subActionName}
+					</button>
 				</TitleBox>
 				<div className="content">{props.children}</div>
 			</div>
@@ -88,7 +99,8 @@ function Modal(props) {
 				<ModalOverlay
 					onHide={props.onHideModal}
 					title={props.title}
-					subActionName={props.subActionName}>
+					subActionName={props.subActionName}
+					onSubAction={props.onSubAction}>
 					{props.children}
 				</ModalOverlay>,
 				portalElement
