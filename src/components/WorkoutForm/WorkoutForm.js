@@ -1,4 +1,7 @@
+import { useContext } from "react";
 import styled from "styled-components";
+
+import WorkoutContext from "../../store/workout-context";
 
 import Button from "../UI/Button";
 import { ArrClose } from "../UI/ArrowIcon";
@@ -91,6 +94,9 @@ const SubjectBox = styled.div`
  * IconBtn이랑 TextBtn은 Button 컴포넌트로 대체 가능할거같음
  */
 function WorkoutForm(props) {
+	const workoutCtx = useContext(WorkoutContext);
+	// console.log(workoutCtx.selectWorkout);
+
 	const isTemplate = props.type === "template";
 	let timer = "0:00";
 
@@ -133,7 +139,11 @@ function WorkoutForm(props) {
 					</>
 				)}
 			</SubjectBox>
-			<ul className="workout_list_box">{!isTemplate && ""}</ul>
+			<ul className="workout_list_box">
+				{workoutCtx.selectWorkout.map((data) => (
+					<li key={data.name}>{data.name}</li>
+				))}
+			</ul>
 			<Button small={true} type="sky" onClick={showAddWorkout}>
 				워크아웃 추가
 			</Button>
