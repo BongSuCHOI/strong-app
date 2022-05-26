@@ -1,4 +1,7 @@
+import { useContext } from "react";
 import styled from "styled-components";
+
+import WorkoutContext from "../../store/workout-context";
 
 import { ArrCheck } from "../UI/ArrowIcon";
 
@@ -19,13 +22,18 @@ const List = styled.li`
 	width: 100%;
 	padding: 5px 0;
 	border-bottom: 1px solid ${({ theme }) => theme.border};
-	background: ${(props) => {
-		if (props.check) {
-			return ({ theme }) => theme.sky;
-		} else {
-			return ({ theme }) => theme.white;
+	background: ${({ theme }) => theme.white};
+	& .arr-check {
+		display: none;
+	}
+	&.clicked {
+		& .name {
+			color: ${({ theme }) => theme.primary};
 		}
-	}};
+		.arr-check {
+			display: block;
+		}
+	}
 	&:first-child {
 		border-top: 1px solid ${({ theme }) => theme.border};
 	}
@@ -49,8 +57,10 @@ const InfoBox = styled.div`
 const NameBox = styled.div`
 	${({ theme }) => theme.flexBox("center", "space-between")};
 	margin-bottom: 5px;
-	line-height: 1.3;
-	font-weight: 700;
+	& p {
+		line-height: 1.3;
+		font-weight: 700;
+	}
 `;
 
 const CountBox = styled.div`
@@ -64,8 +74,15 @@ const CountBox = styled.div`
 `;
 
 function WorkoutList(props) {
-	function handlePropsOnClick(data) {
+	const workoutCtx = useContext(WorkoutContext);
+
+	// 이 컨텍스트에 존재하는 리스트는 다시 열어도 checked
+	// 이미 checked된 리스트는 checked toggle
+	console.log(workoutCtx.selectWorkout);
+
+	function handlePropsOnClick(data, e) {
 		if (props.onClick) {
+			e.currentTarget.classList.toggle("clicked");
 			props.onClick(data);
 		} else {
 			return;
@@ -79,8 +96,8 @@ function WorkoutList(props) {
 					return (
 						<List
 							key={data.name}
-							onClick={() => {
-								handlePropsOnClick(data);
+							onClick={(e) => {
+								handlePropsOnClick(data, e);
 							}}>
 							<ImgBox className="img_box">
 								<img src={data.image} alt={data.name} />
@@ -93,7 +110,7 @@ function WorkoutList(props) {
 								<CountBox>
 									<span className="category">{data.categoryKO}</span>
 									<span className="count">
-										{data.amount === 0 ? "0" : data.amount}
+										{data.amount === 0 ? "" : data.amount}
 									</span>
 								</CountBox>
 							</InfoBox>
