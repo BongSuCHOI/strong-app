@@ -77,6 +77,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body {
+        position: relative;
         background-color: #fff;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -95,7 +96,7 @@ const GlobalStyle = createGlobalStyle`
         font-size: 16px;
         color: #000;
         line-height: 1;
-        letter-spacing: -1px;
+        letter-spacing: -0.5px;
     }
     fieldset,
     img {
@@ -143,9 +144,6 @@ const GlobalStyle = createGlobalStyle`
     }
     textarea {
         resize: none;
-    }
-    body {
-        position: relative;
     }
     table {
         padding: 0;
