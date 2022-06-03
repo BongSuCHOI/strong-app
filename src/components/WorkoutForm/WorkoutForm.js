@@ -102,6 +102,7 @@ function WorkoutForm(props) {
 
 	function handleCloseForm() {
 		props.onClose({ state: false, type: "" });
+		workoutCtx.clearSelectWorkout();
 	}
 
 	function showAddWorkout() {

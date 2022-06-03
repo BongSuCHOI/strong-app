@@ -30,6 +30,12 @@ function workoutReducer(state, action) {
 
 		return { ...state, selectWorkout: updateSelectWorkout };
 	}
+
+	if (action.type === "CLEAR") {
+		state.selectWorkout.length = 0;
+		return { ...state };
+	}
+
 	return { ...state };
 }
 
@@ -40,10 +46,15 @@ function WorkoutProvider(props) {
 		dispatchWorkoutAction({ type: "ADD", data: data });
 	}
 
+	function handleClearSelectWorkout() {
+		dispatchWorkoutAction({ type: "CLEAR" });
+	}
+
 	const workoutContext = {
 		workout: workoutState.workout,
 		selectWorkout: workoutState.selectWorkout,
 		addWorkout: handleAddWorkout,
+		clearSelectWorkout: handleClearSelectWorkout,
 	};
 
 	return (
