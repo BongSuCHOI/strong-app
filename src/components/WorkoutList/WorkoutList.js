@@ -76,10 +76,6 @@ const CountBox = styled.div`
 function WorkoutList(props) {
 	const workoutCtx = useContext(WorkoutContext);
 
-	// 이 컨텍스트에 존재하는 리스트는 다시 열어도 checked
-	// 이미 checked된 리스트는 checked toggle
-	console.log(workoutCtx.selectWorkout);
-
 	function handlePropsOnClick(data, e) {
 		if (props.onClick) {
 			e.currentTarget.classList.toggle("clicked");
@@ -93,12 +89,17 @@ function WorkoutList(props) {
 		<ListContainer height={props.height}>
 			<ListBox>
 				{props.listData.map((data) => {
+					const isSelected = workoutCtx.selectWorkout.some(
+						(workout) => workout.name === data.name
+					);
+
 					return (
 						<List
 							key={data.name}
 							onClick={(e) => {
 								handlePropsOnClick(data, e);
-							}}>
+							}}
+							className={isSelected ? "clicked" : ""}>
 							<ImgBox className="img_box">
 								<img src={data.image} alt={data.name} />
 							</ImgBox>

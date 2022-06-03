@@ -26,7 +26,6 @@ function AddWorkout(props) {
 	}
 
 	return (
-		// 연결만 해논 상태
 		<Modal onHideModal={props.onHideModal} subActionName="추가" onSubAction={handleAddWorkout}>
 			<SearchForm />
 			<WorkoutList listData={workoutCtx.workout} onClick={checkWorkoutList} height="60vh" />
