@@ -14,17 +14,6 @@ const ListLi = styled.li`
 	}
 `;
 
-const AddBtn = styled.button`
-	${({ theme }) => theme.flexBox("center", "center")};
-	width: 100%;
-	height: 100%;
-	& p {
-		line-height: 1.3;
-		font-weight: 700;
-		color: ${({ theme }) => theme.primary};
-	}
-`;
-
 const ListBox = styled.div`
 	width: 100%;
 	text-align: left;
@@ -54,39 +43,28 @@ const SubjectBox = styled.div`
 function List(props) {
 	const workoutNames = props.data?.map((data) => data.name);
 	const toStringWorkoutNames = workoutNames ? workoutNames.join(", ") : "";
-	const categoryUpperCase = props.category?.charAt(0).toUpperCase() + props.category?.slice(1);
+	const nameUpperCase = props.name?.charAt(0).toUpperCase() + props.name?.slice(1);
 
 	function selectTempData() {
-		props.onSelectTemplateData({ category: categoryUpperCase, data: props.data });
+		props.onSelectTemplateData({ category: nameUpperCase, data: props.data });
 		props.onShowModal("template");
 	}
 
-	function openWorkoutForm() {
-		props.onOpenWorkoutForm({ state: true, type: "template" });
+	if (!props.data) {
+		return;
 	}
 
 	return (
 		<ListLi>
-			{props.custom && (
-				<AddBtn onClick={openWorkoutForm}>
-					<p>
-						탭하여 새로운
-						<br />
-						템플릿 추가
-					</p>
-				</AddBtn>
-			)}
-			{props.data?.length > 0 && (
-				<ListBox>
-					<SubjectBox>
-						<p>{categoryUpperCase}</p>
-						<button onClick={selectTempData}>
-							<ArrRight width="23px" height="23px" />
-						</button>
-					</SubjectBox>
-					<span>{toStringWorkoutNames}</span>
-				</ListBox>
-			)}
+			<ListBox>
+				<SubjectBox>
+					<p>{nameUpperCase}</p>
+					<button onClick={selectTempData}>
+						<ArrRight width="23px" height="23px" />
+					</button>
+				</SubjectBox>
+				<span>{toStringWorkoutNames}</span>
+			</ListBox>
 		</ListLi>
 	);
 }

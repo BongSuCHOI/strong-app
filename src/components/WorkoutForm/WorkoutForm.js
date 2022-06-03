@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
 
 import WorkoutContext from "../../store/workout-context";
@@ -95,7 +95,8 @@ const SubjectBox = styled.div`
  */
 function WorkoutForm(props) {
 	const workoutCtx = useContext(WorkoutContext);
-	// console.log(workoutCtx.selectWorkout);
+
+	const [enteredName, setEnteredName] = useState("");
 
 	const isTemplate = props.type === "template";
 	let timer = "0:00";
@@ -107,6 +108,15 @@ function WorkoutForm(props) {
 
 	function showAddWorkout() {
 		props.onShowModal("addWorkout");
+	}
+
+	function handleNameChange(e) {
+		setEnteredName(e.target.value);
+	}
+
+	function handleSaveTemplate() {
+		props.onClose({ state: false, type: "" });
+		props.onCustomTemplateData({ category: enteredName, data: workoutCtx.selectWorkout });
 	}
 
 	return (
@@ -126,13 +136,20 @@ function WorkoutForm(props) {
 					{isTemplate && "새 템플릿"}
 					{!isTemplate && timer}
 				</h3>
-				<TextBtn type={props.type}>
+				<TextBtn type={props.type} onClick={isTemplate && handleSaveTemplate}>
 					{isTemplate && "저장"}
 					{!isTemplate && "완료"}
 				</TextBtn>
 			</TitleBox>
 			<SubjectBox>
-				{isTemplate && <input type="text" placeholder="Template Name" />}
+				{isTemplate && (
+					<input
+						type="text"
+						value={enteredName}
+						onChange={handleNameChange}
+						placeholder="Template Name"
+					/>
+				)}
 				{!isTemplate && (
 					<>
 						<p>더미 텍스트</p>
