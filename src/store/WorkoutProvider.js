@@ -7,6 +7,7 @@ import workoutData from "../assets/data/workoutData.json";
 const defaultWorkout = {
 	workout: workoutData.data,
 	selectWorkout: [],
+	customTemplateWorkout: [],
 };
 
 function workoutReducer(state, action) {
@@ -32,8 +33,22 @@ function workoutReducer(state, action) {
 	}
 
 	if (action.type === "CLEAR") {
-		state.selectWorkout.length = 0;
-		return { ...state };
+		return { ...state, selectWorkout: [] };
+	}
+
+	if (action.type === "Add-CUSTOM-TEMP") {
+		let newCustomTemp;
+
+		if (state.customTemplateWorkout.length > 0) {
+			newCustomTemp = state.customTemplateWorkout.concat({
+				category: action.data.category,
+				data: action.data.data,
+			});
+		} else {
+			newCustomTemp = [{ category: action.data.category, data: action.data.data }];
+		}
+
+		return { ...state, customTemplateWorkout: newCustomTemp };
 	}
 
 	return { ...state };
@@ -50,9 +65,16 @@ function WorkoutProvider(props) {
 		dispatchWorkoutAction({ type: "CLEAR" });
 	}
 
+	function handleSaveCustomTemplate(data) {
+		dispatchWorkoutAction({ type: "Add-CUSTOM-TEMP", data: data });
+	}
+
+	// context 리네이밍, 파일 분기 필요해보임
 	const workoutContext = {
 		workout: workoutState.workout,
 		selectWorkout: workoutState.selectWorkout,
+		customTemplateWorkout: workoutState.customTemplateWorkout,
+		saveCustomTemplate: handleSaveCustomTemplate,
 		addWorkout: handleAddWorkout,
 		clearSelectWorkout: handleClearSelectWorkout,
 	};

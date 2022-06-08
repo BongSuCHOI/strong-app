@@ -85,8 +85,6 @@ const NameInput = styled.input.attrs({ type: "text", placeholder: "Template Name
 	border: none;
 	&::placeholder {
 		color: ${({ theme }) => theme.placeholder};
-		// ${(props) =>
-			props.isValid ? ({ theme }) => theme.placeholder : ({ theme }) => theme.red};
 	}
 `;
 
@@ -114,7 +112,6 @@ function WorkoutForm(props) {
 	// 유효성 검사
 	useEffect(() => {
 		const checked = setTimeout(() => {
-			console.log(formIsValid);
 			const nameIsValid = enteredName.trim().length !== 0;
 			setFormIsValid(nameIsValid && selectedList);
 		}, 300);
@@ -140,11 +137,14 @@ function WorkoutForm(props) {
 		if (!formIsValid) {
 			alert("템플릿 이름 혹은 워크아웃이 비어있진 않은지 확인해 주세요.");
 			return;
+		} else {
+			workoutCtx.saveCustomTemplate({
+				category: enteredName,
+				data: workoutCtx.selectWorkout,
+			});
+			props.onClose({ state: false, type: "" });
+			workoutCtx.clearSelectWorkout();
 		}
-		props.onCustomTemplateData({ category: enteredName, data: workoutCtx.selectWorkout });
-		props.onClose({ state: false, type: "" });
-		// workoutCtx.selectWorkout를 clear해야하는데 clear하면 main컴포넌트에 저장돼있던 데이터도 같이 날아가서 고쳐야함
-		// enteredName 유효성 검사도 추가 해야함
 	}
 
 	return (
@@ -170,13 +170,7 @@ function WorkoutForm(props) {
 				</TextBtn>
 			</TitleBox>
 			<SubjectBox>
-				{isTemplate && (
-					<NameInput
-						value={enteredName}
-						onChange={handleNameChange}
-						// isValid={nameIsValidate}
-					/>
-				)}
+				{isTemplate && <NameInput value={enteredName} onChange={handleNameChange} />}
 				{!isTemplate && (
 					<>
 						<p>더미 텍스트</p>

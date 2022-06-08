@@ -32,21 +32,10 @@ function Main() {
 	const modalCtx = useContext(ModalContext);
 
 	const [selectTempData, setSelectTempData] = useState();
-	const [customTempData, setCustomTempData] = useState();
 	const [isWorkoutFormOpen, setIsWorkoutFormOpen] = useState({ state: false, type: "" });
 
 	function selectTemplateData(data) {
 		setSelectTempData(data);
-	}
-
-	function customTemplateData(data) {
-		setCustomTempData((prevState) => {
-			if (!prevState) {
-				return [{ category: data.category, data: data.data }];
-			} else {
-				return prevState.concat({ category: data.category, data: data.data });
-			}
-		});
 	}
 
 	function handleOpenWorkoutForm(yn) {
@@ -68,7 +57,6 @@ function Main() {
 					type={isWorkoutFormOpen.type}
 					onClose={handleOpenWorkoutForm}
 					onShowModal={modalCtx.showModalHandelr}
-					onCustomTemplateData={customTemplateData}
 				/>
 			)}
 			<PageTitle>워크아웃 시작</PageTitle>
@@ -80,7 +68,7 @@ function Main() {
 				<h3>템플릿</h3>
 				<TemplateList
 					type={"custom"}
-					workoutData={customTempData}
+					workoutData={workoutCtx.customTemplateWorkout}
 					onShowModal={modalCtx.showModalHandelr}
 					onSelectTemplateData={selectTemplateData}
 					onOpenWorkoutForm={handleOpenWorkoutForm}>
