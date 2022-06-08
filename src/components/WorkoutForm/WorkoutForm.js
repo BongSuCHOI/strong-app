@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 
 import WorkoutContext from "../../store/workout-context";
@@ -68,14 +68,6 @@ const TextBtn = styled.button`
 const SubjectBox = styled.div`
 	width: 100%;
 	margin-bottom: 56px;
-	& input[type="text"] {
-		width: 100%;
-		${({ theme }) => theme.font("xxl", 700)};
-		border: none;
-		&::placeholder {
-			color: ${({ theme }) => theme.placeholder};
-		}
-	}
 	& p {
 		${({ theme }) => theme.font("xxl", 700)};
 	}
@@ -87,6 +79,17 @@ const SubjectBox = styled.div`
 	}
 `;
 
+const NameInput = styled.input.attrs({ type: "text", placeholder: "Template Name" })`
+	width: 100%;
+	${({ theme }) => theme.font("xxl", 700)};
+	border: none;
+	&::placeholder {
+		color: ${({ theme }) => theme.placeholder};
+		// ${(props) =>
+			props.isValid ? ({ theme }) => theme.placeholder : ({ theme }) => theme.red};
+	}
+`;
+
 /** props
  * title="string"
  * type="workout ot template"
@@ -95,11 +98,30 @@ const SubjectBox = styled.div`
  */
 function WorkoutForm(props) {
 	const workoutCtx = useContext(WorkoutContext);
-
 	const [enteredName, setEnteredName] = useState("");
+	const [selectedList, setSelectedList] = useState(false);
+	const [formIsValid, setFormIsValid] = useState(false);
 
 	const isTemplate = props.type === "template";
 	let timer = "0:00";
+
+	// 워크아웃 리스트 추가/삭제시 ctx 갱신되면서 유효성 재검증
+	useEffect(() => {
+		const listIsValid = workoutCtx.selectWorkout.length !== 0;
+		setSelectedList(listIsValid);
+	}, [workoutCtx.selectWorkout]);
+
+	// 유효성 검사
+	useEffect(() => {
+		const checked = setTimeout(() => {
+			console.log(formIsValid);
+			const nameIsValid = enteredName.trim().length !== 0;
+			setFormIsValid(nameIsValid && selectedList);
+		}, 300);
+		return () => {
+			clearTimeout(checked);
+		};
+	}, [enteredName, selectedList]);
 
 	function handleCloseForm() {
 		props.onClose({ state: false, type: "" });
@@ -115,8 +137,14 @@ function WorkoutForm(props) {
 	}
 
 	function handleSaveTemplate() {
-		props.onClose({ state: false, type: "" });
+		if (!formIsValid) {
+			alert("템플릿 이름 혹은 워크아웃이 비어있진 않은지 확인해 주세요.");
+			return;
+		}
 		props.onCustomTemplateData({ category: enteredName, data: workoutCtx.selectWorkout });
+		props.onClose({ state: false, type: "" });
+		// workoutCtx.selectWorkout를 clear해야하는데 clear하면 main컴포넌트에 저장돼있던 데이터도 같이 날아가서 고쳐야함
+		// enteredName 유효성 검사도 추가 해야함
 	}
 
 	return (
@@ -143,11 +171,10 @@ function WorkoutForm(props) {
 			</TitleBox>
 			<SubjectBox>
 				{isTemplate && (
-					<input
-						type="text"
+					<NameInput
 						value={enteredName}
 						onChange={handleNameChange}
-						placeholder="Template Name"
+						// isValid={nameIsValidate}
 					/>
 				)}
 				{!isTemplate && (
