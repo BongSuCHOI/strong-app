@@ -11,6 +11,7 @@ const defaultWorkout = {
 };
 
 function workoutReducer(state, action) {
+	// ADD
 	if (action.type === "ADD") {
 		let updateSelectWorkout;
 
@@ -32,10 +33,12 @@ function workoutReducer(state, action) {
 		return { ...state, selectWorkout: updateSelectWorkout };
 	}
 
+	// CLEAR
 	if (action.type === "CLEAR") {
 		return { ...state, selectWorkout: [] };
 	}
 
+	// ADD CUSTOM TEMP
 	if (action.type === "Add-CUSTOM-TEMP") {
 		let newCustomTemp;
 
@@ -49,6 +52,18 @@ function workoutReducer(state, action) {
 		}
 
 		return { ...state, customTemplateWorkout: newCustomTemp };
+	}
+
+	// REMOVE CUSTOM TEMP
+	if (action.type === "REMOVE-CUSTOM-TEMP") {
+		// list 컴포넌트에서 category를 upperCase해서 모달로 전달하기 때문에 전체를 소문자로 만들어서 필터링
+		const lowerCaseCategory = action.data.category.toLowerCase();
+		
+		const targetData = state.customTemplateWorkout.filter(
+			(data) => data.category !== lowerCaseCategory
+		);
+
+		return { ...state, customTemplateWorkout: targetData };
 	}
 
 	return { ...state };
@@ -69,12 +84,17 @@ function WorkoutProvider(props) {
 		dispatchWorkoutAction({ type: "Add-CUSTOM-TEMP", data: data });
 	}
 
+	function handleRemoveCustomTemplate(data) {
+		dispatchWorkoutAction({ type: "REMOVE-CUSTOM-TEMP", data: data });
+	}
+
 	// context 리네이밍, 파일 분기 필요해보임
 	const workoutContext = {
 		workout: workoutState.workout,
 		selectWorkout: workoutState.selectWorkout,
 		customTemplateWorkout: workoutState.customTemplateWorkout,
 		saveCustomTemplate: handleSaveCustomTemplate,
+		removeCustomTemplate: handleRemoveCustomTemplate,
 		addWorkout: handleAddWorkout,
 		clearSelectWorkout: handleClearSelectWorkout,
 	};

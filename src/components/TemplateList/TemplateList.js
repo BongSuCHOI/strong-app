@@ -101,6 +101,7 @@ function TemplateList(props) {
 				key={list.category}
 				name={list.category}
 				data={list.data}
+				isCustom={isCustom}
 				onShowModal={props.onShowModal}
 				onSelectTemplateData={props.onSelectTemplateData}
 			/>

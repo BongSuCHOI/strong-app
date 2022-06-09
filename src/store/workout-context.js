@@ -5,6 +5,7 @@ const WorkoutContext = React.createContext({
 	selectWorkout: [],
 	customTemplateWorkout: [],
 	saveCustomTemplate: () => {},
+	removeCustomTemplate: () => {},
 	addWorkout: () => {},
 	clearSelectWorkout: () => {},
 });

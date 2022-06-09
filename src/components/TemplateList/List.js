@@ -41,12 +41,16 @@ const SubjectBox = styled.div`
 `;
 
 function List(props) {
-	const workoutNames = props.data?.map((data) => data.name);
+	const workoutNames = props.data.map((data) => data.name);
 	const toStringWorkoutNames = workoutNames ? workoutNames.join(", ") : "";
-	const nameUpperCase = props.name?.charAt(0).toUpperCase() + props.name?.slice(1);
+	const nameUpperCase = props.name.charAt(0).toUpperCase() + props.name.slice(1);
 
 	function selectTempData() {
-		props.onSelectTemplateData({ category: nameUpperCase, data: props.data });
+		props.onSelectTemplateData({
+			category: nameUpperCase,
+			data: props.data,
+			isCustom: props.custom,
+		});
 		props.onShowModal("template");
 	}
 
