@@ -47,34 +47,65 @@ const AddBtn = styled.li`
 
 function TemplateList(props) {
 	const isCustom = props.type === "custom";
-	const exampleWorkout = !isCustom && props.workoutData.filter((data) => data.example);
+	let resExWorkout;
+	let list;
+	let tempCount;
 
-	const reduceData =
-		!isCustom &&
-		exampleWorkout.reduce((acc, curr) => {
-			const category = curr["category"];
+	// 커스텀 템플릿
+	if (isCustom) {
+        // 전달받은 커스텀 데이터 전달
+		list = listComponent(props.workoutData);
+		tempCount = props.workoutData.length;
+	}
 
-			if (!acc[category] && category !== "bicep" && category !== "tricep") {
-				acc[category] = [];
-			}
+    // 예제 템플릿 분류 로직
+    if (!isCustom) {
+        // 전체 데이터 중 예제 데이터만 필터링 후 {category: dataArr, ...}형태로 가공
+		const exampleWorkout = props.workoutData
+            .filter((data) => data.example)
+            .reduce((acc, curr) => {
+                const category = curr["category"];
 
-			if (curr.category === "tricep") {
-				acc["chest"].push(curr);
-			} else if (curr.category === "bicep") {
-				acc["back"].push(curr);
-			} else if (curr.category === "core") {
-				acc["leg"].push(curr);
-			} else {
-				acc[category].push(curr);
-			}
+                if (!acc[category] && category !== "bicep" && category !== "tricep") {
+                    acc[category] = [];
+                }
 
-			return acc;
-		}, {});
+                if (curr.category === "tricep") {
+                    acc["chest"].push(curr);
+                } else if (curr.category === "bicep") {
+                    acc["back"].push(curr);
+                } else if (curr.category === "core") {
+                    acc["leg"].push(curr);
+                } else {
+                    acc[category].push(curr);
+                }
 
-	const resArr = Object.entries(reduceData).reduce((acc, [key, val]) => {
-		acc.push({ category: key, data: val });
-		return acc;
-	}, []);
+                return acc;
+            }, {});
+
+        // 1차 가공된 데이터 [{category: dataArr}, ...]형태로 가공
+        resExWorkout = Object.entries(exampleWorkout).reduce((acc, [key, val]) => {
+            acc.push({ category: key, data: val });
+            return acc;
+        }, []);
+        
+        // 가공끝난 예제 데이터 전달
+        list = listComponent(resExWorkout);
+        tempCount = resExWorkout.length;
+    }
+
+	// 커스텀/예제 템플릿 리스트 컴포넌트
+	function listComponent(listData) {
+		return listData.map((list) => (
+			<List
+				key={list.category}
+				name={list.category}
+				data={list.data}
+				onShowModal={props.onShowModal}
+				onSelectTemplateData={props.onSelectTemplateData}
+			/>
+		));
+	}
 
 	function openWorkoutForm() {
 		props.onOpenWorkoutForm({ state: true, type: "template" });
@@ -84,7 +115,7 @@ function TemplateList(props) {
 		<TemplateDiv>
 			<TemplateCount>
 				<p>
-					{props.children} <span>({resArr.length})</span>
+					{props.children} <span>({tempCount})</span>
 				</p>
 				<button>
 					<ArrDown />
@@ -92,37 +123,17 @@ function TemplateList(props) {
 			</TemplateCount>
 			<TemplateListBox>
 				{isCustom && (
-					<>
-						<AddBtn>
-							<button onClick={openWorkoutForm}>
-								<p>
-									탭하여 새로운
-									<br />
-									템플릿 추가
-								</p>
-							</button>
-						</AddBtn>
-						{props.workoutData?.map((list) => (
-							<List
-								key={list.category}
-								name={list.category}
-								data={list.data}
-								onShowModal={props.onShowModal}
-								onSelectTemplateData={props.onSelectTemplateData}
-							/>
-						))}
-					</>
+					<AddBtn>
+						<button onClick={openWorkoutForm}>
+							<p>
+								탭하여 새로운
+								<br />
+								템플릿 추가
+							</p>
+						</button>
+					</AddBtn>
 				)}
-				{!isCustom &&
-					resArr.map((list) => (
-						<List
-							key={list.category}
-							name={list.category}
-							data={list.data}
-							onShowModal={props.onShowModal}
-							onSelectTemplateData={props.onSelectTemplateData}
-						/>
-					))}
+				{list}
 			</TemplateListBox>
 		</TemplateDiv>
 	);
