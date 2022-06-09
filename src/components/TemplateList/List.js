@@ -31,6 +31,7 @@ const SubjectBox = styled.div`
 		margin-bottom: 5px;
 		line-height: 1.3;
 		${({ theme }) => theme.font("lg", 700)};
+		${({ theme }) => theme.ellipsis("calc(100% - 30px)")}
 	}
 	& button {
 		${({ theme }) => theme.flexBox("center", "center")};
