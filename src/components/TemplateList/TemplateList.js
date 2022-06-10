@@ -53,46 +53,46 @@ function TemplateList(props) {
 
 	// 커스텀 템플릿
 	if (isCustom) {
-        // 전달받은 커스텀 데이터 전달
+		// 전달받은 커스텀 데이터 전달
 		list = listComponent(props.workoutData);
 		tempCount = props.workoutData.length;
 	}
 
-    // 예제 템플릿 분류 로직
-    if (!isCustom) {
-        // 전체 데이터 중 예제 데이터만 필터링 후 {category: dataArr, ...}형태로 가공
+	// 예제 템플릿 분류 로직
+	if (!isCustom) {
+		// 전체 데이터 중 예제 데이터만 필터링 후 {category: dataArr, ...}형태로 가공
 		const exampleWorkout = props.workoutData
-            .filter((data) => data.example)
-            .reduce((acc, curr) => {
-                const category = curr["category"];
+			.filter((data) => data.example)
+			.reduce((acc, curr) => {
+				const category = curr["category"];
 
-                if (!acc[category] && category !== "bicep" && category !== "tricep") {
-                    acc[category] = [];
-                }
+				if (!acc[category] && category !== "bicep" && category !== "tricep") {
+					acc[category] = [];
+				}
 
-                if (curr.category === "tricep") {
-                    acc["chest"].push(curr);
-                } else if (curr.category === "bicep") {
-                    acc["back"].push(curr);
-                } else if (curr.category === "core") {
-                    acc["leg"].push(curr);
-                } else {
-                    acc[category].push(curr);
-                }
+				if (curr.category === "tricep") {
+					acc["chest"].push(curr);
+				} else if (curr.category === "bicep") {
+					acc["back"].push(curr);
+				} else if (curr.category === "core") {
+					acc["leg"].push(curr);
+				} else {
+					acc[category].push(curr);
+				}
 
-                return acc;
-            }, {});
+				return acc;
+			}, {});
 
-        // 1차 가공된 데이터 [{category: dataArr}, ...]형태로 가공
-        resExWorkout = Object.entries(exampleWorkout).reduce((acc, [key, val]) => {
-            acc.push({ category: key, data: val });
-            return acc;
-        }, []);
-        
-        // 가공끝난 예제 데이터 전달
-        list = listComponent(resExWorkout);
-        tempCount = resExWorkout.length;
-    }
+		// 1차 가공된 데이터 [{category: dataArr}, ...]형태로 가공
+		resExWorkout = Object.entries(exampleWorkout).reduce((acc, [key, val]) => {
+			acc.push({ category: key, data: val });
+			return acc;
+		}, []);
+
+		// 가공끝난 예제 데이터 전달
+		list = listComponent(resExWorkout);
+		tempCount = resExWorkout.length;
+	}
 
 	// 커스텀/예제 템플릿 리스트 컴포넌트
 	function listComponent(listData) {
@@ -101,7 +101,7 @@ function TemplateList(props) {
 				key={list.category}
 				name={list.category}
 				data={list.data}
-				isCustom={isCustom}
+				custom={isCustom}
 				onShowModal={props.onShowModal}
 				onSelectTemplateData={props.onSelectTemplateData}
 			/>

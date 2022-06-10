@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
 
 import WorkoutContext from "../../store/workout-context";
@@ -75,11 +75,35 @@ const CountBox = styled.div`
 
 function WorkoutList(props) {
 	const workoutCtx = useContext(WorkoutContext);
+	const [selectedData, setSelectedData] = useState([]);
+
+	// 키워드 검색 및 카테고리 필터링 로직
+	const filteredListData = props.listData.filter((data) => {
+		const upperCaseName = data.name.toUpperCase();
+		const upperCaseKeyword = props.searchKeyword?.toUpperCase();
+		const category = props.category;
+
+		if (category === undefined || category === null) {
+			return true;
+		}
+
+		if (category === "" || category === "all") {
+			return upperCaseName.includes(upperCaseKeyword);
+		} else if (category === "bicep") {
+			return (
+				(data.category === "bicep" || data.category === "tricep") &&
+				upperCaseName.includes(upperCaseKeyword)
+			);
+		} else {
+			return data.category === category && upperCaseName.includes(upperCaseKeyword);
+		}
+	});
 
 	function handlePropsOnClick(data, e) {
 		if (props.onClick) {
 			e.currentTarget.classList.toggle("clicked");
 			props.onClick(data);
+			setSelectedData((prevState) => prevState.concat(data));
 		} else {
 			return;
 		}
@@ -88,10 +112,13 @@ function WorkoutList(props) {
 	return (
 		<ListContainer height={props.height}>
 			<ListBox>
-				{props.listData.map((data) => {
-					const isSelected = workoutCtx.selectWorkout.some(
+				{filteredListData.map((data) => {
+					// isKeeped는 추가 후 다시 추가 모달 열었을때 이미 추가한 리스트 checked유지
+					const isKeeped = workoutCtx.selectWorkout.some(
 						(workout) => workout.name === data.name
-					);
+						);
+						// isSelected는 선택 후 카테고리 및 검색 시 선택한 리스트 checked유지
+					const isSelected = selectedData.some((select) => select.name === data.name);
 
 					return (
 						<List
@@ -99,7 +126,7 @@ function WorkoutList(props) {
 							onClick={(e) => {
 								handlePropsOnClick(data, e);
 							}}
-							className={isSelected ? "clicked" : ""}>
+							className={isKeeped || isSelected ? "clicked" : ""}>
 							<ImgBox className="img_box">
 								<img src={data.image} alt={data.name} />
 							</ImgBox>

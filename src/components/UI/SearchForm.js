@@ -19,27 +19,52 @@ const FormBox = styled.form`
 
 const CategoryBox = styled.div`
 	${({ theme }) => theme.flexBox("center", "space-between")};
+	overflow-y: scroll;
 	width: 100%;
 	height: 25px;
 	margin-top: 10px;
-	& button {
-		width: calc(20% - 8px);
-		height: 100%;
-		${({ theme }) => theme.font("sm", 500)};
-		background: ${({ theme }) => theme.lightGray};
-		border-radius: 6px;
+`;
+
+const Button = styled.button`
+	flex-shrink: 0;
+	width: 60px;
+	height: 100%;
+	margin-right: 10px;
+	${({ theme }) => theme.font("sm", 500)};
+	background: ${({ theme }) => theme.lightGray};
+	border-radius: 6px;
+	&:nth-last-child(1) {
+		margin-right: 0;
 	}
 `;
-function SearchForm() {
+
+function SearchForm(props) {
+	const categoryList = {
+		all: "전체",
+		chest: "가슴",
+		back: "등",
+		leg: "다리",
+		shoulder: "어깨",
+		bicep: "팔",
+		core: "코어",
+	};
+
 	return (
 		<FormBox>
-			<input type="text" placeholder="검색" />
+			<input
+				type="text"
+				placeholder="검색"
+				onChange={props.onEnteredInput}
+				value={props.enteredValue}
+			/>
 			<CategoryBox>
-				<button value="all">전체</button>
-				<button value="chest">가슴</button>
-				<button value="back">등</button>
-				<button value="leg">다리</button>
-				<button value="biceps">팔</button>
+				{Object.entries(categoryList).map(([key, val]) => {
+					return (
+						<Button key={key} value={key} onClick={props.onSelectedCategory}>
+							{val}
+						</Button>
+					);
+				})}
 			</CategoryBox>
 		</FormBox>
 	);
