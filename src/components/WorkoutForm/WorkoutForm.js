@@ -5,6 +5,7 @@ import WorkoutContext from "../../store/workout-context";
 
 import Button from "../UI/Button";
 import { ArrClose } from "../UI/ArrowIcon";
+import WorkoutInput from "./WorkoutInput";
 
 import timerIco from "../../assets/image/ico/timer.png";
 
@@ -53,7 +54,7 @@ const TextBtn = styled.button`
 	height: 34px;
 	line-height: 34px;
 	text-align: center;
-	font-weight: 500;
+	font-weight: 700;
 	color: ${({ theme }) => theme.white};
 	background: ${(props) => {
 		if (props.type === "template") {
@@ -142,57 +143,71 @@ function WorkoutForm(props) {
 				category: enteredName,
 				data: workoutCtx.selectWorkout,
 			});
-			props.onClose({ state: false, type: "" });
-			workoutCtx.clearSelectWorkout();
+			handleCloseForm();
 		}
 	}
 
-	return (
-		<FormBox>
-			<TitleBox>
-				<IconBtn onClick={isTemplate && handleCloseForm}>
-					{isTemplate && (
+	// 테스트용 더미 함수
+	function handleDoneWorkout() {
+		alert("완료!");
+		handleCloseForm();
+	}
+
+	// template render
+	if (isTemplate) {
+		return (
+			<FormBox>
+				<TitleBox>
+					<IconBtn onClick={handleCloseForm}>
 						<ArrClose
 							width="24px"
 							height="24px"
 							fill={`${({ theme }) => theme.balck}`}
 						/>
-					)}
-					{!isTemplate && <img src={timerIco} alt="timer" />}
-				</IconBtn>
-				<h3>
-					{isTemplate && "새 템플릿"}
-					{!isTemplate && timer}
-				</h3>
-				<TextBtn type={props.type} onClick={isTemplate && handleSaveTemplate}>
-					{isTemplate && "저장"}
-					{!isTemplate && "완료"}
-				</TextBtn>
-			</TitleBox>
-			<SubjectBox>
-				{isTemplate && <NameInput value={enteredName} onChange={handleNameChange} />}
-				{!isTemplate && (
-					<>
-						<p>더미 텍스트</p>
-						<span>{timer}</span>
-					</>
-				)}
-			</SubjectBox>
-			<ul className="workout_list_box">
-				{workoutCtx.selectWorkout.map((data) => (
-					<li key={data.name}>{data.name}</li>
-				))}
-			</ul>
-			<Button small={true} type="sky" onClick={showAddWorkout}>
-				워크아웃 추가
-			</Button>
-			{!isTemplate && (
-				<Button small={true} type="red" margin="30px 0 0 0">
+					</IconBtn>
+					<h3>새 템플릿</h3>
+					<TextBtn type={props.type} onClick={handleSaveTemplate}>
+						저장
+					</TextBtn>
+				</TitleBox>
+				<SubjectBox>
+					<NameInput value={enteredName} onChange={handleNameChange} />
+				</SubjectBox>
+				<WorkoutInput data={workoutCtx.selectWorkout} />
+				<Button small={true} type="sky" onClick={showAddWorkout}>
+					워크아웃 추가
+				</Button>
+			</FormBox>
+		);
+	}
+
+	// workout render
+	if (!isTemplate) {
+		return (
+			<FormBox>
+				<TitleBox>
+					<IconBtn>
+						<img src={timerIco} alt="timer" />
+					</IconBtn>
+					<h3>{timer}</h3>
+					<TextBtn type={props.type} onClick={handleDoneWorkout}>
+						완료
+					</TextBtn>
+				</TitleBox>
+				<SubjectBox>
+					<p>더미 텍스트</p>
+					<span>{timer}</span>
+				</SubjectBox>
+				<WorkoutInput data={workoutCtx.selectWorkout} />
+				<Button small={true} type="sky" onClick={showAddWorkout}>
+					워크아웃 추가
+				</Button>
+				<Button small={true} type="red" margin="30px 0 0 0" onClick={handleCloseForm}>
 					워크아웃 취소
 				</Button>
-			)}
-		</FormBox>
-	);
+			</FormBox>
+		);
+	}
 }
 
 export default WorkoutForm;

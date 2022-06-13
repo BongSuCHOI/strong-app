@@ -7,9 +7,9 @@ const Btn = styled.button`
 	text-align: center;
 	${(props) => {
 		if (props.small) {
-			return ({ theme }) => theme.font("sm", 500);
+			return ({ theme }) => theme.font("sm", 700);
 		} else {
-			return "font-weight: 500";
+			return "font-weight: 700";
 		}
 	}};
 	color: ${(props) => {

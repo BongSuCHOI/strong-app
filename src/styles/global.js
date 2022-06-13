@@ -166,6 +166,7 @@ const GlobalStyle = createGlobalStyle`
     input,
     textarea,
     select {
+        border: none;
         border-radius: 0;
         -webkit-appearance: none;
     }
